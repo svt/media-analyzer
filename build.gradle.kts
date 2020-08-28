@@ -5,7 +5,7 @@ plugins {
     kotlin("jvm") version "1.3.72"
     id("com.github.fhermansson.assertj-generator") version "1.1.2"
     id("org.jmailen.kotlinter") version "2.3.2"
-    id("pl.allegro.tech.build.axion-release") version "1.11.0"
+    id("pl.allegro.tech.build.axion-release") version "1.10.2"
     id("com.github.ben-manes.versions") version "0.28.0"
     id("com.jfrog.bintray") version "1.8.4"
 }
