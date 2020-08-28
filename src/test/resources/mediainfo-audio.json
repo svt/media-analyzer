@@ -1,0 +1,53 @@
+{
+  "media": {
+    "@ref": "/core/programs/completed/1120201-011A/1b456087-772b-484b-b027-5c0b98b670cc/PG-1120201-011A-ALFONSABERG1-02_STEREO.mp4",
+    "track": [
+      {
+        "@type": "General",
+        "AudioCount": "1",
+        "FileExtension": "mp4",
+        "Format": "MPEG-4",
+        "Format_Profile": "Base Media",
+        "CodecID": "isom",
+        "CodecID_Compatible": "isom/iso2/mp41",
+        "FileSize": "15011925",
+        "Duration": "620.603",
+        "OverallBitRate_Mode": "CBR",
+        "OverallBitRate": "193514",
+        "StreamSize": "117332",
+        "HeaderSize": "36",
+        "DataSize": "14894601",
+        "FooterSize": "117288",
+        "IsStreamable": "No",
+        "File_Modified_Date": "UTC 2020-02-20 01:31:08",
+        "File_Modified_Date_Local": "2020-02-20 02:31:08",
+        "Encoded_Application": "Lavf58.29.100"
+      },
+      {
+        "@type": "Audio",
+        "StreamOrder": "0",
+        "ID": "1",
+        "Format": "AAC",
+        "Format_AdditionalFeatures": "LC",
+        "CodecID": "mp4a-40-2",
+        "Duration": "620.603",
+        "Duration_LastFrame": "-0.005",
+        "BitRate_Mode": "CBR",
+        "BitRate": "192000",
+        "Channels": "2",
+        "ChannelPositions": "Front: L R",
+        "ChannelLayout": "L R",
+        "SamplesPerFrame": "1024",
+        "SamplingRate": "48000",
+        "SamplingCount": "29788944",
+        "FrameRate": "46.875",
+        "FrameCount": "29091",
+        "Compression_Mode": "Lossy",
+        "StreamSize": "14894593",
+        "StreamSize_Proportion": "0.99218",
+        "Default": "Yes",
+        "AlternateGroup": "1"
+      }
+    ]
+  }
+}

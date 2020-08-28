@@ -1,0 +1,28 @@
+{
+  "media": {
+    "@ref": "/core/programs/completed/1120201-011A/1b456087-772b-484b-b027-5c0b98b670cc/PG-1120201-011A-ALFONSABERG1-02_12x20_160x90_thumbnail_map.jpg",
+    "track": [
+      {
+        "@type": "General",
+        "ImageCount": "1",
+        "FileExtension": "jpg",
+        "Format": "JPEG",
+        "FileSize": "518430",
+        "StreamSize": "0",
+        "File_Modified_Date": "UTC 2020-02-20 01:31:08",
+        "File_Modified_Date_Local": "2020-02-20 02:31:08"
+      },
+      {
+        "@type": "Image",
+        "Format": "JPEG",
+        "Width": "1920",
+        "Height": "1800",
+        "ColorSpace": "YUV",
+        "ChromaSubsampling": "4:2:0",
+        "BitDepth": "8",
+        "Compression_Mode": "Lossy",
+        "StreamSize": "518430"
+      }
+    ]
+  }
+}
