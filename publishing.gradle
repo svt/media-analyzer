@@ -1,0 +1,59 @@
+
+def pomConfig = {
+    licenses {
+        license {
+            name "The Apache Software License, Version 2.0"
+            url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+            distribution "repo"
+        }
+    }
+    developers {
+        developer {
+            name "svt open source"
+            organisation "SVT"
+            organisationUrl "https://www.svt.se/opensource/"
+            email "opensource@svt.se"
+        }
+    }
+    
+    scm {
+       url "https://github.com/SVT/media-analyzer/"
+    }
+}
+
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+//need for jcenter/maven repo compliance
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+publishing {
+    publications {
+        publishjob(MavenPublication) {
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+            groupId 'se.svt.oss'
+            artifactId 'media-analyzer'
+            version  scmVersion.version
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('description', 'A media analyzer utilizing FFprobe and Mediainfo')
+                root.appendNode('name', 'media-analyzer')
+                root.appendNode('url', 'https://github.com/SVT/media-analyzer')
+                root.children().last() + pomConfig
+            }
+        }
+    }
+}

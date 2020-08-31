@@ -1,0 +1,46 @@
+{
+  "media": {
+    "@ref": "PG-1383519-001T-KLIMAKTERIETDE-02.dif",
+    "track": [
+      {
+        "@type": "General",
+        "VideoCount": "1",
+        "FileExtension": "dif",
+        "Format": "DV",
+        "Format_Commercial_IfAny": "DVCPRO 50",
+        "FileSize": "25110144000",
+        "Duration": "3487.520",
+        "OverallBitRate_Mode": "CBR",
+        "OverallBitRate": "57600000",
+        "FrameRate": "25.000",
+        "FrameCount": "87188",
+        "StreamSize": "3800001792",
+        "File_Modified_Date": "UTC 2020-02-17 22:04:17",
+        "File_Modified_Date_Local": "2020-02-17 23:04:17"
+      },
+      {
+        "@type": "Video",
+        "Format": "DV",
+        "Format_Commercial_IfAny": "DVCPRO 50",
+        "Duration": "3487.520",
+        "BitRate_Mode": "CBR",
+        "BitRate": "48883200",
+        "Width": "720",
+        "Height": "576",
+        "PixelAspectRatio": "1.067",
+        "DisplayAspectRatio": "1.333",
+        "FrameRate_Mode": "CFR",
+        "FrameRate": "25.000",
+        "FrameCount": "87188",
+        "Standard": "PAL",
+        "ColorSpace": "YUV",
+        "ChromaSubsampling": "4:2:2",
+        "BitDepth": "8",
+        "ScanType": "Interlaced",
+        "ScanOrder": "BFF",
+        "Compression_Mode": "Lossy",
+        "StreamSize": "21310142208"
+      }
+    ]
+  }
+}

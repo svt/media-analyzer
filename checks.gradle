@@ -1,0 +1,33 @@
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            element = 'METHOD'
+            includes = ['se.svt.oss.mediaanalyzer.*']
+            excludes = [
+                    'se.svt.oss.mediaanalyzer.file.*.get*',
+                    'se.svt.oss.mediaanalyzer.ffprobe.FfError.*',
+                    'se.svt.oss.mediaanalyzer.ffprobe.FfprobeAnalyzer.*',
+                    'se.svt.oss.mediaanalyzer.ffprobe.*.get*',
+                    'se.svt.oss.mediaanalyzer.mediainfo.*.get*',
+                    'se.svt.oss.mediaanalyzer.ffprobe.UnknownStream.*',
+                    'se.svt.oss.mediaanalyzer.ffprobe.Frame.*',
+                    'se.svt.oss.mediaanalyzer.mediainfo.MediaInfoAnalyzer.analyze*',
+                    'se.svt.oss.mediaanalyzer.util.ProcessUtil.*',
+                    '*.log.1.invoke()',
+                    '*FfprobeAnalyzer.isInterlaced$default*',
+                    '*inlined.readValue*',
+                    '*ProcessUtil.runAndParse.2.invoke()',
+                    '*kotlin.jvm.internal.DefaultConstructorMarker)'
+            ]
+            limit {
+                counter = 'LINE'
+                minimum = 0.7
+            }
+        }
+
+        failOnViolation = true
+    }
+}
+
+jacocoTestCoverageVerification.dependsOn jacocoTestReport
+check.dependsOn jacocoTestCoverageVerification

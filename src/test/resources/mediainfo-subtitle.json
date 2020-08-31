@@ -1,0 +1,20 @@
+{
+  "media": {
+    "@ref": "http://svt-vod-1l.akamaized.net/d0/world/20200220/f44e0b42-bdfc-40cb-ab23-5852c474deb8/text/closed.vtt",
+    "track": [
+      {
+        "@type": "General",
+        "TextCount": "1",
+        "FileExtension": "vtt",
+        "Format": "WebVTT",
+        "FileSize": "7547",
+        "StreamSize": "7547"
+      },
+      {
+        "@type": "Text",
+        "Format": "WebVTT",
+        "Compression_Mode": "Lossless"
+      }
+    ]
+  }
+}
