@@ -1,38 +1,13 @@
-
-def pomConfig = {
-    licenses {
-        license {
-            name "The Apache Software License, Version 2.0"
-            url "http://www.apache.org/licenses/LICENSE-2.0.txt"
-            distribution "repo"
-        }
-    }
-    developers {
-        developer {
-            name "svt open source"
-            organisation "SVT"
-            organisationUrl "https://www.svt.se/opensource/"
-            email "opensource@svt.se"
-        }
-    }
-    
-    scm {
-       url "https://github.com/SVT/media-analyzer/"
-    }
-}
-
-
 task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
+    archiveClassifier = 'sources'
     from sourceSets.main.allSource
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
+    archiveClassifier = 'javadoc'
     from javadoc.destinationDir
 }
 
-//need for jcenter/maven repo compliance
 artifacts {
     archives sourcesJar
     archives javadocJar
@@ -40,20 +15,60 @@ artifacts {
 
 publishing {
     publications {
-        publishjob(MavenPublication) {
+        release(MavenPublication) {
             from components.java
+
+            groupId PUBLISH_GROUP_ID
+            artifactId PUBLISH_ARTIFACT_ID
+            version PUBLISH_VERSION
+
             artifact sourcesJar
             artifact javadocJar
-            groupId 'se.svt.oss'
-            artifactId 'media-analyzer'
-            version  scmVersion.version
-            pom.withXml {
-                def root = asNode()
-                root.appendNode('description', 'A media analyzer utilizing FFprobe and Mediainfo')
-                root.appendNode('name', 'media-analyzer')
-                root.appendNode('url', 'https://github.com/SVT/media-analyzer')
-                root.children().last() + pomConfig
+
+
+            pom {
+                name = PUBLISH_ARTIFACT_ID
+                description =  'A media analyzer utilizing FFprobe and Mediainfo'
+                url = 'https://github.com/svt/media-analyzer'
+
+                licenses {
+                    license {
+                        name = "The Apache Software License, Version 2.0"
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                        distribution = "repo"
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'svtse'
+                        name = "Sveriges Television AB"
+                        organization  = "Sveriges Television AB"
+                        organizationUrl = "https://www.svt.se/opensource"
+                        email = "opensource@svt.se"
+                    }
+                }
+
+                scm {
+                    connection = 'scm:git:github.com/svt/media-analyzer.git'
+                    developerConnection = 'scm:git:ssh://github.com/svt/media-analyzer.git'
+                    url = "https://github.com/svt/media-analyzer"
+                }
             }
         }
     }
+
+    repositories {
+        maven {
+            name = "mavencentral"
+            url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+
+            credentials {
+                username sonatypeUsername
+                password sonatypePassword
+            }
+        }
+    }
+}
+signing {
+    sign publishing.publications
 }

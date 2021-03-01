@@ -1,5 +1,6 @@
 plugins {
     `maven-publish`
+    signing
     idea
     jacoco
     kotlin("jvm") version "1.3.72"
@@ -7,18 +8,20 @@ plugins {
     id("org.jmailen.kotlinter") version "2.3.2"
     id("pl.allegro.tech.build.axion-release") version "1.10.2"
     id("com.github.ben-manes.versions") version "0.28.0"
-    id("com.jfrog.bintray") version "1.8.4"
 }
+
+val PUBLISH_GROUP_ID by extra("se.svt.oss")
+val PUBLISH_VERSION by extra(scmVersion.version)
+val PUBLISH_ARTIFACT_ID by extra("media-analyzer")
+
+group = PUBLISH_GROUP_ID
+project.version = PUBLISH_VERSION
 
 apply {
     from("initial-version.gradle")
     from("checks.gradle")
-    from("bintray.gradle")
     from("publishing.gradle")
 }
-
-group = "se.svt.oss"
-version = scmVersion.version
 
 tasks.test {
     useJUnitPlatform {
@@ -38,7 +41,6 @@ assertjGenerator {
 }
 
 repositories {
-    jcenter()
     mavenCentral()
 }
 
