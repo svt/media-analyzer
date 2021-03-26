@@ -16,7 +16,6 @@ internal class FractionTest {
         assertThat(fraction)
             .hasNumerator(22)
             .hasDenominator(11)
-            .hasStringValue("22/11")
         assertThat("22:11".toFraction()).isEqualTo(fraction)
     }
 
@@ -36,5 +35,19 @@ internal class FractionTest {
         val fraction = Fraction(0, 0)
         assertThat(fraction).isNotValid
         assertThat(fraction.toDoubleSafe()).isNull()
+    }
+
+    @Test
+    fun testSimplified() {
+        assertThat(Fraction(0, 4).simplified()).isEqualTo(Fraction(0, 1))
+        assertThat(Fraction(4, 1).simplified()).isEqualTo(Fraction(4, 1))
+        assertThat(Fraction(1080, 1920).simplified()).isEqualTo(Fraction(9, 16))
+    }
+
+    @Test
+    fun testStringValue() {
+        assertThat(Fraction(16, 9).stringValue()).isEqualTo("16/9")
+        assertThat(Fraction(16, 9).stringValue(":")).isEqualTo("16:9")
+        assertThat(Fraction(16, 9).stringValue("/")).isEqualTo("16/9")
     }
 }

@@ -16,10 +16,19 @@ data class Fraction(val numerator: Int, val denominator: Int) {
             val denominator = matchResult.groupValues[2].toInt()
             return Fraction(nominator, denominator)
         }
+
+        private fun gcd(a: Int, b: Int): Int {
+            return if (b == 0) a else gcd(b, a % b)
+        }
     }
 
-    val stringValue
-        get() = "$numerator/$denominator"
+    fun simplified(): Fraction {
+        val gcd = gcd(numerator, denominator)
+        return Fraction(numerator / gcd, denominator / gcd)
+    }
+
+    @JvmOverloads
+    fun stringValue(delimiter: String = "/") = "$numerator$delimiter$denominator"
 
     val isValid: Boolean
         get() = denominator != 0
