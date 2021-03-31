@@ -36,7 +36,7 @@ kotlinter {
 }
 
 assertjGenerator {
-    classOrPackageNames = arrayOf("se.svt.oss.mediaanalyzer")
+    classOrPackageNames = arrayOf("se.svt.oss.mediaanalyzer", "org.apache.commons.math3.fraction")
     entryPointPackage = "se.svt.oss.mediaanalyzer"
 }
 
@@ -49,6 +49,7 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.2")
     implementation("io.github.microutils:kotlin-logging:1.7.9")
+    api("org.apache.commons:commons-math3:3.6.1")
     testImplementation("io.mockk:mockk:1.10.0")
     testImplementation("org.assertj:assertj-core:3.16.1")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.0")
