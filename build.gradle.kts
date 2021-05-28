@@ -12,7 +12,7 @@ plugins {
 
 
 group = "se.svt.oss"
-project.version = scmVersion
+project.version = scmVersion.version
 
 apply {
     from("initial-version.gradle")
