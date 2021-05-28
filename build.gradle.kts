@@ -1,12 +1,13 @@
 plugins {
+    id("maven-publish")
     idea
     jacoco
     kotlin("jvm") version "1.4.20"
     id("com.github.fhermansson.assertj-generator") version "1.1.2"
     id("org.jmailen.kotlinter") version "3.1.0"
     id("pl.allegro.tech.build.axion-release") version "1.10.2"
-    id("com.github.ben-manes.versions") version "0.28.0"
-    id("se.svt.oss.gradle-yapp-publisher-plugin") version "0.1.10"
+    id("se.ascp.gradle.gradle-versions-filter") version "0.1.8"
+    id("se.svt.oss.gradle-yapp-publisher-plugin") version "0.1.13"
 }
 
 
