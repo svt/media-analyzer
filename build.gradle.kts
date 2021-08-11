@@ -7,7 +7,7 @@ plugins {
     id("org.jmailen.kotlinter") version "3.4.5"
     id("pl.allegro.tech.build.axion-release") version "1.13.3"
     id("se.ascp.gradle.gradle-versions-filter") version "0.1.10"
-    id("se.svt.oss.gradle-yapp-publisher-plugin") version "0.1.13"
+    id("se.svt.oss.gradle-yapp-publisher-plugin") version "0.1.15"
 }
 
 
