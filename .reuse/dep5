@@ -12,13 +12,34 @@ Files: *.yml
 Copyright: 2020 Sveriges Television AB
 License: CC0-1.0
 
+Files: *.xml
+Copyright: 2020 Sveriges Television AB
+License: CC0-1.0
+
+Files: *.json
+Copyright: 2020 Sveriges Television AB
+License: CC0-1.0
+
 Files: *.gradle
+Copyright: 2020 Sveriges Television AB
+License: CC0-1.0
+
+Files: *.gradle.kts
 Copyright: 2020 Sveriges Television AB
 License: CC0-1.0
 
 Files: *.properties
 Copyright: 2020 Sveriges Television AB
 License: CC0-1.0
+
+Files: *.mp4
+Copyright: 2021 Sveriges Television AB
+License: CC-BY-SA-4.0
+
+Files: *.json
+Copyright: 2020 Sveriges Television AB
+License: CC0-1.0
+
 
 # Third-party files.
 
