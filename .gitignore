@@ -5,6 +5,8 @@ generated-java
 out/
 gradlew.bat
 
+
+report
 **/build
 
 *.log
