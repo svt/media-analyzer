@@ -21,6 +21,6 @@ data class VideoFile(
         get() = "VideoFile"
     val highestBitrateVideoStream: VideoStream
         @JsonIgnore
-        get() = videoStreams.maxBy { it.bitrate ?: 0 }
+        get() = videoStreams.maxByOrNull { it.bitrate ?: 0 }
             ?: throw IllegalStateException("No video streams in $file!")
 }

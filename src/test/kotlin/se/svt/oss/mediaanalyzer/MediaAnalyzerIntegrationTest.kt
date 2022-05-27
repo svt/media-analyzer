@@ -5,9 +5,9 @@
 package se.svt.oss.mediaanalyzer
 
 import org.junit.jupiter.api.Tag
+import org.junit.jupiter.api.Test
 import se.svt.oss.mediaanalyzer.Assertions.assertThat
 import se.svt.oss.mediaanalyzer.Assertions.assertThatThrownBy
-import org.junit.jupiter.api.Test
 import se.svt.oss.mediaanalyzer.file.AudioFile
 import se.svt.oss.mediaanalyzer.file.VideoFile
 
