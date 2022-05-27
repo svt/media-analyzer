@@ -32,6 +32,10 @@ Files: *.properties
 Copyright: 2020 Sveriges Television AB
 License: CC0-1.0
 
+Files: *.adoc
+Copyright: 2022 Sveriges Television AB
+License: CC0-1.0
+
 Files: *.mp4
 Copyright: 2021 Sveriges Television AB
 License: CC-BY-SA-4.0

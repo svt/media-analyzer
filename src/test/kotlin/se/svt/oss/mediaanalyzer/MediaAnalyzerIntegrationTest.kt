@@ -71,18 +71,6 @@ class MediaAnalyzerIntegrationTest {
     }
 
     @Test
-    fun testInterlaced() {
-        val file = javaClass.getResource("/test_interlaced_anamorphic.dv").file
-
-        val videoFile = MediaAnalyzer().analyze(file, true) as VideoFile
-
-        assertThat(videoFile.highestBitrateVideoStream)
-            .isInterlaced
-            .hasSampleAspectRatio("16:15")
-            .hasDisplayAspectRatio("4:3")
-    }
-
-    @Test
     fun testAudio() {
         val file = javaClass.getResource("/test_audio_file.mp4").file
 
