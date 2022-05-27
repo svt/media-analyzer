@@ -10,4 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Maintenance release - improve workflow, publishing, tidy ups, reuse compliance, deps.
 
+### Added
+- JVM 11 min
+
 
