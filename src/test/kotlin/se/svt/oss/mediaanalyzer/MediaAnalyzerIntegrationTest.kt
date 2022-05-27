@@ -5,9 +5,9 @@
 package se.svt.oss.mediaanalyzer
 
 import org.junit.jupiter.api.Tag
+import org.junit.jupiter.api.Test
 import se.svt.oss.mediaanalyzer.Assertions.assertThat
 import se.svt.oss.mediaanalyzer.Assertions.assertThatThrownBy
-import org.junit.jupiter.api.Test
 import se.svt.oss.mediaanalyzer.file.AudioFile
 import se.svt.oss.mediaanalyzer.file.VideoFile
 
@@ -68,18 +68,6 @@ class MediaAnalyzerIntegrationTest {
             .containsExactly(
                 384000L
             )
-    }
-
-    @Test
-    fun testInterlaced() {
-        val file = javaClass.getResource("/test_interlaced_anamorphic.dv").file
-
-        val videoFile = MediaAnalyzer().analyze(file, true) as VideoFile
-
-        assertThat(videoFile.highestBitrateVideoStream)
-            .isInterlaced
-            .hasSampleAspectRatio("16:15")
-            .hasDisplayAspectRatio("4:3")
     }
 
     @Test
