@@ -9,6 +9,7 @@ data class AudioStream(
     val codec: String?,
     val duration: Double?,
     val channels: Int,
+    val channelLayout: String?,
     val samplingRate: Int?,
     val bitrate: Long?
 )

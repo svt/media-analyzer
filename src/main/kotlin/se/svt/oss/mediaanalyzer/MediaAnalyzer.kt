@@ -158,6 +158,7 @@ class MediaAnalyzer
                 codec = ffAudioStream.codec_name,
                 duration = ffAudioStream.duration ?: audioTrack?.duration,
                 channels = ffAudioStream.channels,
+                channelLayout = ffAudioStream.channel_layout,
                 samplingRate = ffAudioStream.sample_rate ?: audioTrack?.samplingRate,
                 bitrate = ffAudioStream.bit_rate ?: audioTrack?.bitrate
             )
