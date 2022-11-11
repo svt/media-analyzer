@@ -5,5 +5,6 @@ APPLY_FIXES: all
 
 # Lint specifig settings
 ENABLE: [KOTLIN, MARKDOWN, YAML, COPYPASTE]
+DISABLE_ERRORS_LINTERS: [MARKDOWN_MARKDOWN_LINK_CHECK]
 
 COPYPASTE_JSCPD_ARGUMENTS: --ignore "**/build/**,**/test/resources/**,**/src/test/generated-java/**,report,LICENSES,.idea" --threshold "10"
