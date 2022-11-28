@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 @file:JvmName("Fractions")
+
 package se.svt.oss.mediaanalyzer.file
 
 import org.apache.commons.math3.fraction.Fraction
