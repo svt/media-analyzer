@@ -11,5 +11,6 @@ data class AudioStream(
     val channels: Int,
     val channelLayout: String?,
     val samplingRate: Int?,
-    val bitrate: Long?
+    val bitrate: Long?,
+    val profile: String?
 )

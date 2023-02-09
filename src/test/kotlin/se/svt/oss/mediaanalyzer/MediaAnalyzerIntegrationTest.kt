@@ -90,5 +90,28 @@ class MediaAnalyzerIntegrationTest {
             .hasDuration(2.621)
             .hasSamplingRate(48000)
             .hasBitrate(128104)
+            .hasProfile("LC")
+    }
+    @Test
+    fun testAudioHeAac() {
+        val file = javaClass.getResource("/he-aac_test.mp4").file
+
+        val audioFile = MediaAnalyzer()
+            .analyze(file) as AudioFile
+
+        assertThat(audioFile)
+            .hasFormat("MPEG-4")
+            .hasOverallBitrate(67625)
+            .hasDuration(5.000)
+
+        assertThat(audioFile.audioStreams).hasSize(1)
+        assertThat(audioFile.audioStreams.first())
+            .hasFormat("AAC")
+            .hasCodec("aac")
+            .hasChannels(2)
+            .hasDuration(5.000)
+            .hasSamplingRate(48000)
+            .hasBitrate(64183)
+            .hasProfile("HE-AAC")
     }
 }
