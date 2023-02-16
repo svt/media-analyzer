@@ -160,7 +160,8 @@ class MediaAnalyzer
                 channels = ffAudioStream.channels,
                 channelLayout = ffAudioStream.channel_layout,
                 samplingRate = ffAudioStream.sample_rate ?: audioTrack?.samplingRate,
-                bitrate = ffAudioStream.bit_rate ?: audioTrack?.bitrate
+                bitrate = ffAudioStream.bit_rate ?: audioTrack?.bitrate,
+                profile = ffAudioStream.profile
             )
         }
     }
