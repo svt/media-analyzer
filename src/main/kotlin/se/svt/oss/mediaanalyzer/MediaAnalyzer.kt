@@ -137,7 +137,8 @@ class MediaAnalyzer
                 bitDepth = ffVideoStream.bits_per_raw_sample ?: videoTrack?.bitDepth,
                 numFrames = numFrames,
                 isInterlaced = interlaced,
-                transferCharacteristics = videoTrack?.transferCharacteristics
+                transferCharacteristics = videoTrack?.transferCharacteristics,
+                codecTagString = ffVideoStream.codec_tag_string
             )
         }
     }
