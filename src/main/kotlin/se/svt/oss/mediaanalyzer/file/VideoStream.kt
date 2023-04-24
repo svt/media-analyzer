@@ -21,5 +21,5 @@ data class VideoStream(
     val numFrames: Int,
     val isInterlaced: Boolean,
     val transferCharacteristics: String?,
-    val codecTagString: String
+    val codecTagString: String?
 )
