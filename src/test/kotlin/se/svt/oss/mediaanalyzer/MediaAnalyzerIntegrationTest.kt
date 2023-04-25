@@ -52,6 +52,7 @@ class MediaAnalyzerIntegrationTest {
             .hasBitDepth(10)
             .hasNumFrames(250)
             .hasTransferCharacteristics(null)
+            .hasCodecTagString("avc1")
 
         assertThat(videoFile.audioStreams).hasSize(1)
         assertThat(videoFile.audioStreams)
