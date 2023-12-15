@@ -40,6 +40,10 @@ Files: *.mp4
 Copyright: 2021 Sveriges Television AB
 License: CC-BY-SA-4.0
 
+Files: *.tts
+Copyright: 2023 Sveriges Television AB
+License: CC-BY-SA-4.0
+
 Files: *.json
 Copyright: 2020 Sveriges Television AB
 License: CC0-1.0
