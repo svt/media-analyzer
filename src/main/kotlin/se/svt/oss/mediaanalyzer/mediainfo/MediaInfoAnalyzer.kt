@@ -10,12 +10,18 @@ import se.svt.oss.mediaanalyzer.util.ProcessUtil
 class MediaInfoAnalyzer
 @JvmOverloads constructor(private val objectMapper: ObjectMapper = ObjectMapper().findAndRegisterModules()) {
 
-    fun analyze(file: String): MediaInfo {
+    fun analyze(file: String, disableImageSequenceDetection: Boolean): MediaInfo {
+        val args = buildList {
+            add("mediainfo")
+            add("--Output=JSON")
+            if (disableImageSequenceDetection) {
+                add("--File_TestContinuousFileNames=0")
+            }
+            add(file)
+        }
         val (exitCode, mediaInfo) = ProcessUtil.runAndParse<MediaInfo>(
             objectMapper,
-            "mediainfo",
-            "--Output=JSON",
-            file
+            *args.toTypedArray()
         )
         if (exitCode != 0) {
             throw RuntimeException("mediainfo returned exit code: $exitCode")

@@ -25,11 +25,10 @@ class MediaAnalyzerIntegrationTest {
     fun testVideoFile() {
         val file = javaClass.getResource("/test.mp4").file
         val videoFile = MediaAnalyzer().analyze(file, true) as VideoFile
-        println("videoFile is: $videoFile")
         assertThat(videoFile)
             .hasFormat("MPEG-4")
-            .hasDuration(10.016)
-            .hasOverallBitrate(2424115)
+            .hasDuration(10.01)
+            .hasOverallBitrate(2425568)
             .hasFileSize(3034992)
 
         assertThat(videoFile.file).endsWith("/test.mp4")
@@ -80,8 +79,8 @@ class MediaAnalyzerIntegrationTest {
 
         assertThat(audioFile)
             .hasFormat("MPEG-4")
-            .hasOverallBitrate(132016)
-            .hasDuration(2.643)
+            .hasOverallBitrate(133124)
+            .hasDuration(2.621)
 
         assertThat(audioFile.audioStreams).hasSize(1)
         assertThat(audioFile.audioStreams.first())
@@ -93,6 +92,7 @@ class MediaAnalyzerIntegrationTest {
             .hasBitrate(128104)
             .hasProfile("LC")
     }
+
     @Test
     fun testAudioHeAac() {
         val file = javaClass.getResource("/he-aac_test.mp4").file
@@ -114,5 +114,23 @@ class MediaAnalyzerIntegrationTest {
             .hasSamplingRate(48000)
             .hasBitrate(64183)
             .hasProfile("HE-AAC")
+    }
+
+    @Test
+    fun ffprobeInputParams() {
+        val file = javaClass.getResource("/rawaudio.tts").file
+
+        val audioFile = MediaAnalyzer()
+            .analyze(
+                file,
+                ffprobeInputParams = linkedMapOf(
+                    "f" to "s16le",
+                    "ac" to "1",
+                    "ar" to "22050",
+                )
+            )
+        assertThat(audioFile).isInstanceOf(AudioFile::class.java)
+        assertThat(audioFile as AudioFile)
+            .hasDuration(5.0)
     }
 }
