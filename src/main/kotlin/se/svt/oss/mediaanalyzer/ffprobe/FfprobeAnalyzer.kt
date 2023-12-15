@@ -10,18 +10,25 @@ import se.svt.oss.mediaanalyzer.util.ProcessUtil
 class FfprobeAnalyzer
 @JvmOverloads constructor(private val objectMapper: ObjectMapper = ObjectMapper().findAndRegisterModules()) {
 
-    fun analyze(file: String): ProbeResult {
+    fun analyze(file: String, ffprobeInputParams: LinkedHashMap<String, String?>): ProbeResult {
+        val command = buildList<String> {
+            add("ffprobe")
+            add("-v")
+            add("quiet")
+            add("-of")
+            add("json")
+            add("-show_streams")
+            add("-show_format")
+            add("-show_error")
+            ffprobeInputParams.forEach { (key, value) ->
+                add("-$key")
+                value?.let { add(it) }
+            }
+            add(file)
+        }
         val (exitCode, probeResult) = ProcessUtil.runAndParse<ProbeResult>(
             objectMapper,
-            "ffprobe",
-            "-v",
-            "quiet",
-            "-of",
-            "json",
-            "-show_streams",
-            "-show_format",
-            "-show_error",
-            file
+            *command.toTypedArray()
         )
         if (exitCode != 0 || probeResult.error != null) {
             val message = probeResult.error?.string ?: "exitcode: $exitCode"
@@ -31,19 +38,29 @@ class FfprobeAnalyzer
     }
 
     @JvmOverloads
-    fun isInterlaced(file: String, videoIndex: Int = 0): Boolean {
+    fun isInterlaced(file: String, videoIndex: Int = 0, ffprobeInputParams: LinkedHashMap<String, String?>): Boolean {
+        val command = buildList<String> {
+            add("ffprobe")
+            add("-v")
+            add("quiet")
+            add("-of")
+            add("json")
+            add("-read_intervals")
+            add("%+5")
+            add("-select_streams")
+            add("v:$videoIndex")
+            add("-show_entries")
+            add("frame=interlaced_frame")
+            add("-show_error")
+            ffprobeInputParams.forEach { (key, value) ->
+                add("-$key")
+                value?.let { add(it) }
+            }
+            add(file)
+        }
         val (exitCode, probeResult) = ProcessUtil.runAndParse<ProbeResult>(
             objectMapper,
-            "ffprobe",
-            "-v",
-            "quiet",
-            "-of",
-            "json",
-            "-read_intervals", "%+5",
-            "-select_streams", "v:$videoIndex",
-            "-show_entries", "frame=interlaced_frame",
-            "-show_error",
-            file
+            *command.toTypedArray()
         )
         if (exitCode != 0 || probeResult.error != null) {
             val message = probeResult.error?.string ?: "exitcode: $exitCode"

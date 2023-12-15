@@ -230,19 +230,19 @@ internal class MediaAnalyzerTest {
     }
 
     private fun mockFfprobe(jsonPath: String) {
-        every { anyConstructed<FfprobeAnalyzer>().analyze(file) } returns parse(jsonPath)
+        every { anyConstructed<FfprobeAnalyzer>().analyze(file, any()) } returns parse(jsonPath)
     }
 
     private fun mockFfprobeInterlaced(interlaced: Boolean) {
-        every { anyConstructed<FfprobeAnalyzer>().isInterlaced(any(), any()) } returns interlaced
+        every { anyConstructed<FfprobeAnalyzer>().isInterlaced(any(), any(), any()) } returns interlaced
     }
 
     private fun mockMediaInfoFails() {
-        every { anyConstructed<MediaInfoAnalyzer>().analyze(file) } throws RuntimeException("mediainfo failed!")
+        every { anyConstructed<MediaInfoAnalyzer>().analyze(file, any()) } throws RuntimeException("mediainfo failed!")
     }
 
     private fun mockMediaInfo(jsonPath: String) {
-        every { anyConstructed<MediaInfoAnalyzer>().analyze(file) } returns parse(jsonPath)
+        every { anyConstructed<MediaInfoAnalyzer>().analyze(file, any()) } returns parse(jsonPath)
     }
 
     private inline fun <reified T> parse(file: String): T = objectMapper.readValue<T>(javaClass.getResource(file))

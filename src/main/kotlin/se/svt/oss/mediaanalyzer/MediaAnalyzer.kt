@@ -29,9 +29,14 @@ class MediaAnalyzer
 
     private val log = KotlinLogging.logger { }
 
-    fun analyze(file: String, probeInterlaced: Boolean = false): MediaFile {
+    fun analyze(
+        file: String,
+        probeInterlaced: Boolean = false,
+        disableImageSequenceDetection: Boolean = false,
+        ffprobeInputParams: LinkedHashMap<String, String?> = linkedMapOf()
+    ): MediaFile {
         val mediaInfo = try {
-            mediaInfoAnalyzer.analyze(file)
+            mediaInfoAnalyzer.analyze(file, disableImageSequenceDetection)
         } catch (e: Exception) {
             log.warn(e) { "Error running mediainfo on $file!" }
             null
@@ -57,14 +62,15 @@ class MediaAnalyzer
             )
         }
 
-        val probeResult = ffprobeAnalyzer.analyze(file)
-        return mergeResults(probeResult, mediaInfo, probeInterlaced)
+        val probeResult = ffprobeAnalyzer.analyze(file, ffprobeInputParams)
+        return mergeResults(probeResult, mediaInfo, probeInterlaced, ffprobeInputParams)
     }
 
     private fun mergeResults(
         probeResult: ProbeResult,
         mediaInfo: MediaInfo?,
-        probeInterlaced: Boolean
+        probeInterlaced: Boolean,
+        ffprobeInputParams: LinkedHashMap<String, String?>
     ): MediaFile {
         val format = probeResult.format ?: throw IllegalStateException("No format detected in ffprobe result!")
         val formatName = mediaInfo?.generalTrack?.format ?: format.format_name
@@ -93,7 +99,7 @@ class MediaAnalyzer
             format = formatName,
             overallBitrate = overallBitrate,
             duration = duration,
-            videoStreams = videoStreams(probeResult, mediaInfo, probeInterlaced),
+            videoStreams = videoStreams(probeResult, mediaInfo, probeInterlaced, ffprobeInputParams),
             audioStreams = audioStreams(probeResult, mediaInfo)
         )
     }
@@ -101,7 +107,8 @@ class MediaAnalyzer
     private fun videoStreams(
         probeResult: ProbeResult,
         mediaInfo: MediaInfo?,
-        probeInterlaced: Boolean
+        probeInterlaced: Boolean,
+        ffprobeInputParams: LinkedHashMap<String, String?>
     ): List<VideoStream> {
         val videoStreams = probeResult.videoStreams
         val mediaInfoStreams = mediaInfo?.videoTracks?.let {
@@ -118,7 +125,8 @@ class MediaAnalyzer
                 ?: (ffVideoStream.r_frame_rate.toFraction().toDouble() * duration).toInt()
             val interlaced = if (probeInterlaced) ffprobeAnalyzer.isInterlaced(
                 probeResult.format!!.filename,
-                index
+                index,
+                ffprobeInputParams
             ) else videoTrack?.isInterlaced ?: false
 
             VideoStream(
