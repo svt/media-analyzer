@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class ImageTrack(
     override val format: String,
+    override val extra: Map<String, Any> = emptyMap(),
     @JsonProperty("Width")
     val width: Int,
     @JsonProperty("Height")
