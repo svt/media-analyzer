@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class VideoTrack(
     override val format: String,
+    override val extra: Map<String, Any> = emptyMap(),
     @JsonProperty("Duration")
     val duration: Double,
     @JsonProperty("BitRate")
@@ -24,6 +25,10 @@ data class VideoTrack(
     val displayAspectRatio: Double,
     @JsonProperty("FrameRate")
     val frameRate: Double,
+    @JsonProperty("FrameRate_Num")
+    val frameRateNum: Int?,
+    @JsonProperty("FrameRate_Den")
+    val frameRateDen: Int?,
     @JsonProperty("FrameCount")
     val frameCount: Int,
     @JsonProperty("ColorSpace")
@@ -73,9 +78,7 @@ data class VideoTrack(
     @JsonProperty("MasteringDisplay_Luminance")
     val masteringDisplayLuminance: String?,
     @JsonProperty("MasteringDisplay_Luminance_Source")
-    val masteringDisplayLuminanceSource: String?,
-    val extra: Map<String, String> = emptyMap()
-
+    val masteringDisplayLuminanceSource: String?
 ) : Track {
     val isInterlaced: Boolean?
         get() = scanType?.let { it != "Progressive" }

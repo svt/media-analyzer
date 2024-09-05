@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class GeneralTrack(
     override val format: String = "UNKNOWN",
+    override val extra: Map<String, Any> = emptyMap(),
     @JsonProperty("FileSize")
     val fileSize: Long,
     @JsonProperty("Duration")

@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class AudioTrack(
     override val format: String,
+    override val extra: Map<String, Any> = emptyMap(),
     @JsonProperty("Duration")
     val duration: Double,
     @JsonProperty("BitRate")

@@ -45,4 +45,6 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo
 interface Track {
     @get:JsonProperty("Format")
     val format: String
+    @get:JsonProperty("extra")
+    val extra: Map<String, Any>
 }

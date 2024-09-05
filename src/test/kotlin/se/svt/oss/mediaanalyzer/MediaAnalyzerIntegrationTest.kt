@@ -125,7 +125,6 @@ class MediaAnalyzerIntegrationTest {
                 file,
                 ffprobeInputParams = linkedMapOf(
                     "f" to "s16le",
-                    "ac" to "1",
                     "ar" to "22050",
                 )
             )
