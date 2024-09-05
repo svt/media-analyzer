@@ -107,6 +107,15 @@ internal class MediaAnalyzerTest {
     }
 
     @Test
+    fun testMediaInfoSource() {
+        mockMediaInfo("/mediainfo-hls.json")
+        val videoTrack = MediaInfoAnalyzer().analyze(file, true).videoTracks.firstOrNull()
+        assertThat(videoTrack?.extra?.get("Source") as? String)
+            .describedAs("extra.Source")
+            .isEqualTo("hls-video1/hls-video1.m3u8")
+    }
+
+    @Test
     fun testMediaInfoNoAudio() {
         mockMediaInfo("/mediainfo-audio-corrupt.json")
         mockFfprobe("/ffprobe-audio-corrupt.json")
