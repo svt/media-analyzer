@@ -13,6 +13,8 @@ data class VideoStream(
     val height: Int,
     val sampleAspectRatio: FractionString?,
     val displayAspectRatio: FractionString?,
+    // Rotation instruction anti-clockwise
+    val rotation: Int?,
     val pixelFormat: String?,
     val frameRate: FractionString,
     val duration: Double,

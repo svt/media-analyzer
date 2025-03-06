@@ -10,6 +10,7 @@ jacocoTestCoverageVerification {
                     'se.svt.oss.mediaanalyzer.ffprobe.*.get*',
                     'se.svt.oss.mediaanalyzer.mediainfo.*.get*',
                     'se.svt.oss.mediaanalyzer.ffprobe.UnknownStream.*',
+                    'se.svt.oss.mediaanalyzer.ffprobe.UnknownSideData.*',
                     'se.svt.oss.mediaanalyzer.ffprobe.Frame.*',
                     'se.svt.oss.mediaanalyzer.mediainfo.MediaInfoAnalyzer.analyze*',
                     'se.svt.oss.mediaanalyzer.util.ProcessUtil.*',

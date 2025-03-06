@@ -23,6 +23,8 @@ data class VideoTrack(
     val pixelAspectRatio: Double?,
     @JsonProperty("DisplayAspectRatio")
     val displayAspectRatio: Double,
+    @JsonProperty("Rotation")
+    val rotation: Double?,
     @JsonProperty("FrameRate")
     val frameRate: Double,
     @JsonProperty("FrameRate_Num")
