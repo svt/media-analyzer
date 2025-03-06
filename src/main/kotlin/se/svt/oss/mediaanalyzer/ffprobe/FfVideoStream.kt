@@ -44,5 +44,6 @@ data class FfVideoStream(
     val chroma_location: String?,
     val field_order: String?,
     val timecode: String?,
-    val refs: Int?
+    val refs: Int?,
+    val side_data_list: List<SideData> = emptyList()
 ) : Stream

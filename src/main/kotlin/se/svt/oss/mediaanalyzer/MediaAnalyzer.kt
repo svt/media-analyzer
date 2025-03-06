@@ -6,6 +6,7 @@ package se.svt.oss.mediaanalyzer
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import mu.KotlinLogging
+import se.svt.oss.mediaanalyzer.ffprobe.DisplayMatrix
 import se.svt.oss.mediaanalyzer.ffprobe.FfprobeAnalyzer
 import se.svt.oss.mediaanalyzer.ffprobe.ProbeResult
 import se.svt.oss.mediaanalyzer.file.AudioFile
@@ -129,6 +130,9 @@ class MediaAnalyzer
                 ffprobeInputParams
             ) else videoTrack?.isInterlaced ?: false
 
+            val rotation =
+                ffVideoStream.side_data_list.filterIsInstance<DisplayMatrix>().firstNotNullOfOrNull { it.rotation }
+                    ?: videoTrack?.rotation?.toInt()?.unaryMinus()
             VideoStream(
                 format = videoTrack?.format,
                 codec = ffVideoStream.codec_name,
@@ -138,6 +142,7 @@ class MediaAnalyzer
                 height = ffVideoStream.height,
                 sampleAspectRatio = ffVideoStream.sample_aspect_ratio,
                 displayAspectRatio = ffVideoStream.display_aspect_ratio,
+                rotation = rotation,
                 pixelFormat = ffVideoStream.pix_fmt,
                 frameRate = ffVideoStream.r_frame_rate,
                 duration = duration,

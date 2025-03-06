@@ -238,6 +238,15 @@ internal class MediaAnalyzerTest {
             .hasBitrate(1536000)
     }
 
+    @Test
+    fun testPortraitRotation() {
+        mockMediaInfo("/mediainfo-portrait-rotation.json")
+        mockFfprobe("/ffprobe-portrait-rotation.json")
+        val videoFile = MediaAnalyzer().analyze(file, false) as VideoFile
+        assertThat(videoFile.videoStreams.firstOrNull())
+            .hasRotation(-90)
+    }
+
     private fun mockFfprobe(jsonPath: String) {
         every { anyConstructed<FfprobeAnalyzer>().analyze(file, any()) } returns parse(jsonPath)
     }
