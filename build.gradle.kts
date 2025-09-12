@@ -6,13 +6,19 @@ plugins {
     kotlin("jvm") version "1.9.25"
     id("com.github.fhermansson.assertj-generator") version "1.1.5"
     id("org.jmailen.kotlinter") version "3.10.0"
-    id("pl.allegro.tech.build.axion-release") version "1.13.9"
+    id("pl.allegro.tech.build.axion-release") version "1.18.18"
     id("com.github.ben-manes.versions") version "0.51.0"
     id("se.svt.oss.gradle-yapp-publisher") version "0.1.18"
 }
 
-scmVersion.tag.prefix = "release"
-scmVersion.tag.versionSeparator = "-"
+scmVersion {
+    releaseOnlyOnReleaseBranches = true
+    ignoreUncommittedChanges = false
+    tag {
+        prefix = "release"
+        versionSeparator = "-"
+    }
+}
 
 group = "se.svt.oss"
 project.version = scmVersion.version
@@ -78,5 +84,5 @@ kotlin {
 }
 tasks.wrapper {
     distributionType = Wrapper.DistributionType.ALL
-    gradleVersion = "7.4.2"
+    gradleVersion = "8.14.3"
 }

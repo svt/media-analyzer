@@ -247,6 +247,24 @@ internal class MediaAnalyzerTest {
             .hasRotation(-90)
     }
 
+    @Test
+    fun testIPhoneAudio() {
+        mockMediaInfo("/mediainfo-iphone.json")
+        mockFfprobe("/ffprobe-iphone.json")
+        val videoFile = MediaAnalyzer().analyze(file, false) as VideoFile
+        assertThat(videoFile.audioStreams)
+            .hasSize(2)
+        assertThat(videoFile.audioStreams[0])
+            .hasFormat("AAC")
+            .hasCodec("aac")
+            .hasChannels(2)
+            .hasChannelLayout("stereo")
+        assertThat(videoFile.audioStreams[1])
+            .hasFormat("APAC")
+            .hasCodec(null)
+            .hasChannels(4)
+    }
+
     private fun mockFfprobe(jsonPath: String) {
         every { anyConstructed<FfprobeAnalyzer>().analyze(file, any()) } returns parse(jsonPath)
     }

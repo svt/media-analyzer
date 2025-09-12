@@ -10,7 +10,7 @@ import se.svt.oss.mediaanalyzer.file.FractionString
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class FfAudioStream(
     override val index: Int,
-    override val codec_name: String,
+    override val codec_name: String?,
     override val codec_long_name: String?,
     override val profile: String?,
     override val codec_type: String?,
