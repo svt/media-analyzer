@@ -78,9 +78,7 @@ dependencies {
 }
 
 kotlin {
-    jvmToolchain {
-        languageVersion.set(JavaLanguageVersion.of(11))
-    }
+    jvmToolchain(17)
 }
 tasks.wrapper {
     distributionType = Wrapper.DistributionType.ALL
