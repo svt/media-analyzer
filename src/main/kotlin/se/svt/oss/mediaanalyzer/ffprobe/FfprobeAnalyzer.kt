@@ -11,7 +11,7 @@ class FfprobeAnalyzer
 @JvmOverloads constructor(private val objectMapper: ObjectMapper = ObjectMapper().findAndRegisterModules()) {
 
     fun analyze(file: String, ffprobeInputParams: LinkedHashMap<String, String?>): ProbeResult {
-        val command = buildList<String> {
+        val command = buildList {
             add("ffprobe")
             add("-v")
             add("quiet")
@@ -22,7 +22,7 @@ class FfprobeAnalyzer
             add("-show_error")
             ffprobeInputParams.forEach { (key, value) ->
                 add("-$key")
-                value?.let { add(it) }
+                value?.takeIf { it.isNotBlank() }?.let { add(it) }
             }
             add(file)
         }
@@ -39,7 +39,7 @@ class FfprobeAnalyzer
 
     @JvmOverloads
     fun isInterlaced(file: String, videoIndex: Int = 0, ffprobeInputParams: LinkedHashMap<String, String?>): Boolean {
-        val command = buildList<String> {
+        val command = buildList {
             add("ffprobe")
             add("-v")
             add("quiet")
@@ -54,7 +54,7 @@ class FfprobeAnalyzer
             add("-show_error")
             ffprobeInputParams.forEach { (key, value) ->
                 add("-$key")
-                value?.let { add(it) }
+                value?.takeIf { it.isNotBlank() }?.let { add(it) }
             }
             add(file)
         }

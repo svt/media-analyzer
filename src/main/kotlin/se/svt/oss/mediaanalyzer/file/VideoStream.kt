@@ -6,7 +6,7 @@ package se.svt.oss.mediaanalyzer.file
 
 data class VideoStream(
     val format: String?,
-    val codec: String,
+    val codec: String?,
     val profile: String?,
     val level: String?,
     val width: Int,
