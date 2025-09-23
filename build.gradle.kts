@@ -3,12 +3,14 @@ import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 plugins {
     idea
     jacoco
+    `java-library`
+    `maven-publish`
     kotlin("jvm") version "1.9.25"
     id("com.github.fhermansson.assertj-generator") version "1.1.5"
     id("org.jmailen.kotlinter") version "3.10.0"
     id("pl.allegro.tech.build.axion-release") version "1.18.18"
     id("com.github.ben-manes.versions") version "0.51.0"
-    id("se.svt.oss.gradle-yapp-publisher") version "0.1.18"
+    id("org.jreleaser") version "1.20.0"
 }
 
 scmVersion {
@@ -22,9 +24,11 @@ scmVersion {
 
 group = "se.svt.oss"
 project.version = scmVersion.version
+project.description = "A media analyzer lib that utilizes ffprobe and mediainfo"
 
 apply {
     from("checks.gradle")
+    from("release.gradle")
 }
 
 tasks.test {
@@ -62,6 +66,49 @@ tasks.withType<DependencyUpdatesTask> {
 assertjGenerator {
     classOrPackageNames = arrayOf("se.svt.oss.mediaanalyzer", "org.apache.commons.math3.fraction")
     entryPointPackage = "se.svt.oss.mediaanalyzer"
+}
+
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+            pom {
+                name = project.name
+                description = project.description
+                url = "https://github.com/svt/media-analyzer"
+                inceptionYear = "2020"
+                developers {
+                    developer {
+                        name = "Team Videocore"
+                        email = "videcore@teams.svt.se"
+                        organization = "SVT"
+                        organizationUrl = "https://opensource.svt.se"
+                    }
+                }
+                licenses {
+                    license {
+                        name = "Apache-2.0"
+                        url = "https://spdx.org/licenses/Apache-2.0.html"
+                    }
+                }
+                scm {
+                    connection = "scm:git:https://github.com/svt/media-analyzer.git"
+                    developerConnection = "scm:git:ssh://github.com/svt/media-analyzer.git"
+                    url = "https://github.com/svt/media-analyzer"
+                }
+            }
+        }
+        repositories {
+            maven {
+                setUrl(layout.buildDirectory.dir("staging-deploy"))
+            }
+        }
+    }
 }
 
 dependencies {

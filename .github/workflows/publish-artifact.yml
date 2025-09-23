@@ -8,29 +8,25 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@v4
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: "17"
           distribution: temurin
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: clean build -PrunIntegrationTest=false
+        uses: gradle/actions/setup-gradle@v4
 
-      - name: OSSRH Upload
+      - name: Create artifact
+        run: ./gradlew clean publish
+
+      - name: Maven Central Upload
         env:
-          YAPP_MAVENPUBLISHING_USER: ${{ secrets.SONATYPE_USER }}
-          YAPP_MAVENPUBLISHING_PASSWORD: ${{ secrets.SONATYPE_PWD }}
-          YAPP_SIGNING_KEYID: ${{ secrets.SIGNING_KEY_ID }}
-          YAPP_SIGNING_KEYSECRET: ${{ secrets.SIGNING_PWD }}
-          YAPP_SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
-        run: ./gradlew publishArtifact
+          JRELEASER_MAVENCENTRAL_SONATYPE_USERNAME: ${{ secrets.SONATYPE_USER }}
+          JRELEASER_MAVENCENTRAL_SONATYPE_TOKEN: ${{ secrets.SONATYPE_PWD }}
+          JRELEASER_GPG_PUBLIC_KEY: ${{ secrets.SIGNING_KEY_ID }}
+          JRELEASER_GPG_PASSPHRASE: ${{ secrets.SIGNING_PWD }}
+          JRELEASER_GPG_SECRET_KEY: ${{ secrets.SIGNING_KEY }}
+        run: ./gradlew jreleaserDeploy
