@@ -23,5 +23,9 @@ data class VideoStream(
     val numFrames: Int,
     val isInterlaced: Boolean,
     val transferCharacteristics: String?,
+    val colorRange: String?,
+    val colorSpace: String?,
+    val colorTransfer: String?,
+    val colorPrimaries: String?,
     val codecTagString: String?
 )

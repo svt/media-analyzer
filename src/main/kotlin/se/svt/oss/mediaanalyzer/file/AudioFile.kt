@@ -13,7 +13,8 @@ data class AudioFile(
     override val format: String,
     override val overallBitrate: Long,
     override val duration: Double,
-    override val audioStreams: List<AudioStream>
+    override val audioStreams: List<AudioStream>,
+    override val isTruncated: Boolean,
 ) : MediaContainer {
     override val type: String
         get() = "AudioFile"
