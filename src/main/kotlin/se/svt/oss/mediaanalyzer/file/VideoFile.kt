@@ -16,7 +16,7 @@ data class VideoFile(
     override val duration: Double,
     val videoStreams: List<VideoStream>,
     override val audioStreams: List<AudioStream> = emptyList(),
-    override val isTruncated: Boolean,
+    override val isTruncated: Boolean = false,
 ) : MediaContainer {
     override val type: String
         get() = "VideoFile"
