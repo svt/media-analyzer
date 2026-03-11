@@ -1,0 +1,185 @@
+{
+  "creatingLibrary": {
+    "name": "MediaInfoLib",
+    "version": "26.01",
+    "url": "https://mediaarea.net/MediaInfo"
+  },
+  "media": {
+    "@ref": "LR-2026-0218-KROSSADETOMTAR-01.mxf",
+    "track": [
+      {
+        "@type": "General",
+        "VideoCount": "1",
+        "AudioCount": "2",
+        "OtherCount": "3",
+        "FileExtension": "mxf",
+        "Format": "MXF",
+        "Format_Commercial_IfAny": "DNxHD 120",
+        "Format_Version": "1.2",
+        "Format_Profile": "OP-1a",
+        "Format_Settings": "Closed / Complete",
+        "FileSize": "301498368",
+        "Duration": "51.520",
+        "OverallBitRate": "46816517",
+        "FrameRate": "25.000",
+        "Encoded_Date": "2026-02-18 13:43:55.516",
+        "File_Modified_Date": "2026-02-18 14:44:39 UTC",
+        "File_Modified_Date_Local": "2026-02-18 15:44:39",
+        "extra": {
+          "IsTruncated": "Yes",
+          "PrimaryPackage": "Material Package",
+          "ConformanceErrors": [
+            {
+              "MXF": [
+                {
+                  "GeneralCompliance": "File size is less than expected size (actual 301498368 38%, expected 797948928, offset 0x11F88000)"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "@type": "Video",
+        "StreamOrder": "0",
+        "ID": "2",
+        "Format": "VC-3",
+        "Format_Commercial_IfAny": "DNxHD 120",
+        "Format_Version": "1",
+        "Format_Profile": "HD",
+        "Format_Level": "SQ",
+        "Format_Settings_Wrapping": "Frame",
+        "CodecID": "0D01030102110100-0401020271000000",
+        "Duration": "51.520",
+        "BitRate_Mode": "CBR",
+        "BitRate": "121241600",
+        "Width": "1920",
+        "Height": "1080",
+        "PixelAspectRatio": "1.000",
+        "DisplayAspectRatio": "1.778",
+        "FrameRate": "25.000",
+        "FrameRate_Num": "25",
+        "FrameRate_Den": "1",
+        "FrameCount": "1288",
+        "ColorSpace": "YUV",
+        "ChromaSubsampling": "4:2:2",
+        "BitDepth": "8",
+        "ScanType": "Progressive",
+        "ScanType_Original": "Interlaced",
+        "ScanOrder_Original": "TFF",
+        "Delay": "36426.920",
+        "Delay_DropFrame": "No",
+        "Delay_Source": "Container",
+        "StreamSize": "780795904",
+        "Title": "Picture Track",
+        "extra": {
+          "Delay_SDTI": "36426920"
+        }
+      },
+      {
+        "@type": "Audio",
+        "@typeorder": "1",
+        "StreamOrder": "1",
+        "ID": "3",
+        "Format": "PCM",
+        "Format_Settings_Endianness": "Little",
+        "Format_Settings_Wrapping": "Frame (BWF)",
+        "CodecID": "0D01030102060100-040202017F000000",
+        "Duration": "51.520",
+        "BitRate_Mode": "CBR",
+        "BitRate": "1152000",
+        "Channels": "1",
+        "SamplesPerFrame": "1920",
+        "SamplingRate": "48000",
+        "SamplingCount": "2472960",
+        "FrameRate": "25.000",
+        "FrameCount": "1288",
+        "BitDepth": "24",
+        "Delay": "36426.920",
+        "Delay_DropFrame": "No",
+        "Delay_Source": "Container",
+        "Video_Delay": "0.000",
+        "StreamSize": "7418880",
+        "Title": "Sound Track",
+        "extra": {
+          "Delay_SDTI": "36426920",
+          "BlockAlignment": "3"
+        }
+      },
+      {
+        "@type": "Audio",
+        "@typeorder": "2",
+        "StreamOrder": "2",
+        "ID": "4",
+        "Format": "PCM",
+        "Format_Settings_Endianness": "Little",
+        "Format_Settings_Wrapping": "Frame (BWF)",
+        "CodecID": "0D01030102060100-040202017F000000",
+        "Duration": "51.520",
+        "BitRate_Mode": "CBR",
+        "BitRate": "1152000",
+        "Channels": "1",
+        "SamplesPerFrame": "1920",
+        "SamplingRate": "48000",
+        "SamplingCount": "2472960",
+        "FrameRate": "25.000",
+        "FrameCount": "1288",
+        "BitDepth": "24",
+        "Delay": "36426.920",
+        "Delay_DropFrame": "No",
+        "Delay_Source": "Container",
+        "Video_Delay": "0.000",
+        "StreamSize": "7418880",
+        "Title": "Sound Track",
+        "extra": {
+          "Delay_SDTI": "36426920",
+          "BlockAlignment": "3"
+        }
+      },
+      {
+        "@type": "Other",
+        "@typeorder": "1",
+        "ID": "1-Material",
+        "Type": "Time code",
+        "Format": "MXF TC",
+        "FrameRate": "25.000",
+        "FrameRate_Num": "25",
+        "FrameRate_Den": "1",
+        "FrameCount": "1288",
+        "TimeCode_FirstFrame": "10:07:06:23",
+        "TimeCode_LastFrame": "10:07:58:10",
+        "TimeCode_Settings": "Material Package",
+        "TimeCode_Stripped": "Yes",
+        "Title": "Timecode Track"
+      },
+      {
+        "@type": "Other",
+        "@typeorder": "2",
+        "ID": "1-Source",
+        "Type": "Time code",
+        "Format": "MXF TC",
+        "FrameRate": "25.000",
+        "FrameRate_Num": "25",
+        "FrameRate_Den": "1",
+        "FrameCount": "1288",
+        "TimeCode_FirstFrame": "10:07:06:23",
+        "TimeCode_LastFrame": "10:07:58:10",
+        "TimeCode_Settings": "Source Package",
+        "TimeCode_Stripped": "Yes",
+        "Title": "Timecode Track"
+      },
+      {
+        "@type": "Other",
+        "@typeorder": "3",
+        "Type": "Time code",
+        "Format": "SMPTE TC",
+        "MuxingMode": "SDTI",
+        "FrameRate": "25.000",
+        "FrameRate_Num": "25",
+        "FrameRate_Den": "1",
+        "TimeCode_FirstFrame": "10:07:06:23"
+      }
+    ]
+  }
+}
+

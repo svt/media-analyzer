@@ -5,8 +5,9 @@ jacocoTestCoverageVerification {
             includes = ['se.svt.oss.mediaanalyzer.*']
             excludes = [
                     'se.svt.oss.mediaanalyzer.file.*.get*',
+                    'se.svt.oss.mediaanalyzer.file.*.is*',
                     'se.svt.oss.mediaanalyzer.ffprobe.FfError.*',
-                    'se.svt.oss.mediaanalyzer.ffprobe.FfprobeAnalyzer.*',
+                    'se.svt.oss.mediaanalyzer.ffprobe.FfprobeAnalyzer*',
                     'se.svt.oss.mediaanalyzer.ffprobe.*.get*',
                     'se.svt.oss.mediaanalyzer.mediainfo.*.get*',
                     'se.svt.oss.mediaanalyzer.ffprobe.UnknownStream.*',

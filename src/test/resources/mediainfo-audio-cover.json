@@ -1,0 +1,71 @@
+{
+  "creatingLibrary": {
+    "name": "MediaInfoLib",
+    "version": "26.01",
+    "url": "https://mediaarea.net/MediaInfo"
+  },
+  "media": {
+    "@ref": "test.mp3",
+    "track": [
+      {
+        "@type": "General",
+        "AudioCount": "1",
+        "ImageCount": "1",
+        "FileExtension": "mp3",
+        "Format": "MPEG Audio",
+        "FileSize": "6895862",
+        "Duration": "120.024",
+        "OverallBitRate_Mode": "CBR",
+        "OverallBitRate": "128000",
+        "StreamSize": "4975286",
+        "File_Modified_Date": "2026-02-18 14:58:44 UTC",
+        "File_Modified_Date_Local": "2026-02-18 15:58:44",
+        "Encoded_Library": "LAME3.100",
+        "Cover": "Yes",
+        "Cover_Type": "Picture",
+        "Cover_Mime": "image/png",
+        "extra": {
+          "major_brand": "isom",
+          "minor_version": "512",
+          "compatible_brands": "isomiso2avc1mp41"
+        }
+      },
+      {
+        "@type": "Audio",
+        "Format": "MPEG Audio",
+        "Format_Version": "1",
+        "Format_Profile": "Layer 3",
+        "Format_Settings_Mode": "Joint stereo",
+        "Duration": "120.048",
+        "BitRate_Mode": "CBR",
+        "BitRate": "128000",
+        "Channels": "2",
+        "SamplesPerFrame": "1152",
+        "SamplingRate": "48000",
+        "SamplingCount": "5762304",
+        "FrameRate": "41.667",
+        "FrameCount": "5002",
+        "Compression_Mode": "Lossy",
+        "StreamSize": "1920384",
+        "Encoded_Library": "LAME3.100"
+      },
+      {
+        "@type": "Image",
+        "Type": "Picture",
+        "Format": "PNG",
+        "Format_Compression": "Deflate",
+        "Format_Settings_Packing": "Linear",
+        "MuxingMode": "ID3v2 APIC",
+        "Width": "1920",
+        "Height": "1800",
+        "PixelAspectRatio": "1.000",
+        "DisplayAspectRatio": "1.067",
+        "ColorSpace": "RGB",
+        "BitDepth": "8",
+        "Compression_Mode": "Lossless",
+        "StreamSize": "4975073"
+      }
+    ]
+  }
+}
+

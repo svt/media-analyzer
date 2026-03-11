@@ -7,7 +7,7 @@ package se.svt.oss.mediaanalyzer.mediainfo
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-data class MediaInfo(val media: Media) {
+data class MediaInfo(val media: Media) { // TODO: null when non-existing
     val generalTrack by lazy {
         tracksOfType<GeneralTrack>().firstOrNull() ?: throw RuntimeException("No general track")
     }
@@ -27,9 +27,15 @@ data class MediaInfo(val media: Media) {
     val isSubtitle: Boolean
         get() = generalTrack.textCount == 1 && !isImage && !hasAudio && !hasVideo
 
+    val isAudio: Boolean
+        get() = hasAudio && !hasVideo
+
     val hasAudio: Boolean
         get() = generalTrack.audioCount > 0
 
     val hasVideo: Boolean
         get() = generalTrack.videoCount > 0
+
+    val isTruncated: Boolean
+        get() = generalTrack.extra["IsTruncated"] == "Yes"
 }

@@ -23,9 +23,12 @@ import se.svt.oss.mediaanalyzer.mediainfo.MediaInfoAnalyzer
 import se.svt.oss.mediaanalyzer.mediainfo.TextTrack
 
 class MediaAnalyzer
-@JvmOverloads constructor(objectMapper: ObjectMapper = ObjectMapper().findAndRegisterModules()) {
+@JvmOverloads constructor(
+    objectMapper: ObjectMapper = ObjectMapper().findAndRegisterModules(),
+    filterValidFfprobeParams: Boolean = true
+) {
 
-    private val ffprobeAnalyzer = FfprobeAnalyzer(objectMapper)
+    private val ffprobeAnalyzer = FfprobeAnalyzer(objectMapper, filterValidFfprobeParams)
     private val mediaInfoAnalyzer = MediaInfoAnalyzer(objectMapper)
 
     private val log = KotlinLogging.logger { }
@@ -84,14 +87,15 @@ class MediaAnalyzer
         if (videoStreams.isEmpty() && audioStreams.isEmpty()) {
             throw RuntimeException("No video or audio streams detected in $file!")
         }
-        if (videoStreams.isEmpty()) {
+        if (videoStreams.isEmpty() || mediaInfo?.isAudio == true) {
             return AudioFile(
                 file = file,
                 fileSize = fileSize,
                 format = formatName,
                 overallBitrate = overallBitrate,
                 duration = duration,
-                audioStreams = audioStreams(probeResult, mediaInfo)
+                audioStreams = audioStreams(probeResult, mediaInfo),
+                isTruncated = mediaInfo?.isTruncated == true
             )
         }
         return VideoFile(
@@ -101,7 +105,8 @@ class MediaAnalyzer
             overallBitrate = overallBitrate,
             duration = duration,
             videoStreams = videoStreams(probeResult, mediaInfo, probeInterlaced, ffprobeInputParams),
-            audioStreams = audioStreams(probeResult, mediaInfo)
+            audioStreams = audioStreams(probeResult, mediaInfo),
+            isTruncated = mediaInfo?.isTruncated == true
         )
     }
 
@@ -151,6 +156,10 @@ class MediaAnalyzer
                 numFrames = numFrames,
                 isInterlaced = interlaced,
                 transferCharacteristics = videoTrack?.transferCharacteristics,
+                colorRange = ffVideoStream.color_range,
+                colorSpace = ffVideoStream.color_space,
+                colorTransfer = ffVideoStream.color_transfer,
+                colorPrimaries = ffVideoStream.color_primaries,
                 codecTagString = ffVideoStream.codec_tag_string
             )
         }

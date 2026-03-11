@@ -5,12 +5,45 @@
 package se.svt.oss.mediaanalyzer.ffprobe
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import mu.KotlinLogging
 import se.svt.oss.mediaanalyzer.util.ProcessUtil
 
+private val log = KotlinLogging.logger { }
+
 class FfprobeAnalyzer
-@JvmOverloads constructor(private val objectMapper: ObjectMapper = ObjectMapper().findAndRegisterModules()) {
+@JvmOverloads constructor(
+    private val objectMapper: ObjectMapper = ObjectMapper().findAndRegisterModules(),
+    private val filterValidParams: Boolean = true
+) {
+
+    private val validParams: Set<String> by lazy {
+        getValidFfprobeParams()
+    }
+
+    private fun getValidFfprobeParams(): Set<String> {
+        val process = ProcessBuilder("ffprobe", "-h")
+            .redirectErrorStream(true)
+            .start()
+        val validParams = process.inputStream.bufferedReader().useLines { lines ->
+            lines.map { it.trim() }
+                .filter { it.startsWith("-") }
+                .map { it.removePrefix("-").substringBefore(" ") }
+                .toSet()
+        }
+        val exitCode = process.waitFor()
+        if (exitCode != 0) {
+            log.error { "Failed to get valid ffprobe parameters, ffprobe failed with exit code: $exitCode. Will not filter input params." }
+            return emptySet()
+        }
+        return validParams
+    }
 
     fun analyze(file: String, ffprobeInputParams: LinkedHashMap<String, String?>): ProbeResult {
+        val inputParams = if (filterValidParams && ffprobeInputParams.isNotEmpty() && validParams.isNotEmpty()) {
+            ffprobeInputParams.filterKeys { it in validParams }
+        } else {
+            ffprobeInputParams
+        }
         val command = buildList {
             add("ffprobe")
             add("-v")
@@ -20,7 +53,7 @@ class FfprobeAnalyzer
             add("-show_streams")
             add("-show_format")
             add("-show_error")
-            ffprobeInputParams.forEach { (key, value) ->
+            inputParams.forEach { (key, value) ->
                 add("-$key")
                 value?.takeIf { it.isNotBlank() }?.let { add(it) }
             }

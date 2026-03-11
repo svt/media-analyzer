@@ -252,6 +252,7 @@ internal class MediaAnalyzerTest {
         mockMediaInfo("/mediainfo-iphone.json")
         mockFfprobe("/ffprobe-iphone.json")
         val videoFile = MediaAnalyzer().analyze(file, false) as VideoFile
+        assertThat(videoFile).isNotTruncated
         assertThat(videoFile.audioStreams)
             .hasSize(2)
         assertThat(videoFile.audioStreams[0])
@@ -263,6 +264,30 @@ internal class MediaAnalyzerTest {
             .hasFormat("APAC")
             .hasCodec(null)
             .hasChannels(4)
+        assertThat(videoFile.videoStreams)
+            .hasSize(1)
+        assertThat(videoFile.videoStreams[0])
+            .hasColorSpace("bt709")
+            .hasColorTransfer("bt709")
+            .hasColorPrimaries("bt709")
+            .hasColorRange("tv")
+    }
+
+    @Test
+    fun testTruncated() {
+        mockMediaInfo("/mediainfo-truncated.json")
+        mockFfprobe("/ffprobe-truncated.json")
+        val videoFile = MediaAnalyzer().analyze(file, false) as VideoFile
+        assertThat(videoFile).isTruncated
+    }
+
+    @Test
+    fun testAudioWithCoverPicture() {
+        mockMediaInfo("/mediainfo-audio-cover.json")
+        mockFfprobe("/ffprobe-audio-cover.json")
+        val mediaFile = MediaAnalyzer().analyze(file, false)
+        assertThat(mediaFile)
+            .isInstanceOf(AudioFile::class.java)
     }
 
     private fun mockFfprobe(jsonPath: String) {
