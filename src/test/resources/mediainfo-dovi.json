@@ -1,5 +1,8 @@
 {
-  "creatingLibrary": {"name": "MediaInfoLib", "version": "24.06"},
+  "creatingLibrary": {
+    "name": "MediaInfoLib",
+    "version": "26.05"
+  },
   "media": {
     "@ref": "ASSETMAP.xml",
     "track": [
@@ -35,10 +38,14 @@
         "matrix_coefficients": "BT.2020 non-constant",
         "MasteringDisplay_ColorPrimaries": "BT.2020",
         "MasteringDisplay_Luminance": "min: 0.0001 cd/m2, max: 1000 cd/m2",
-        "MaxCLL": "909 cd/m2",
-        "MaxFALL": "199 cd/m2",
+        "MaxCLL": "909",
+        "MaxFALL": "199",
         "HDR_Format": "SMPTE ST 2086 / Dolby Vision Metadata",
-        "extra": {"Source_Original": "VIDEO_dovi.mxf"}
+        "extra": {
+          "Source_Original": "VIDEO_dovi.mxf"
+        },
+        "MasteringDisplay_Luminance_Min": "0.0001",
+        "MasteringDisplay_Luminance_Max": "1000"
       },
       {
         "@type": "Audio",
@@ -47,7 +54,9 @@
         "Duration": "8.040",
         "Channels": "10",
         "SamplingRate": "48000",
-        "extra": {"Source_Original": "AUDIO_atmos.mxf"}
+        "extra": {
+          "Source_Original": "AUDIO_atmos.mxf"
+        }
       }
     ]
   }

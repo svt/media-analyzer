@@ -302,6 +302,8 @@ internal class MediaAnalyzerTest {
             .hasMasteringMinNits(0.0001)
             .hasMaxCllNits(909)
             .hasMaxFallNits(199)
+        // ffprobe reports no color_range for J2K; the container declares Full via MediaInfo
+        assertThat(videoStream).hasColorRange("pc")
     }
 
     private fun mockFfprobe(jsonPath: String) {

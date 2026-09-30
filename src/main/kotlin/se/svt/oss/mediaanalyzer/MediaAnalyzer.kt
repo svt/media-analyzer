@@ -156,7 +156,17 @@ class MediaAnalyzer
                 numFrames = numFrames,
                 isInterlaced = interlaced,
                 transferCharacteristics = videoTrack?.transferCharacteristics,
-                colorRange = ffVideoStream.color_range,
+                // ffprobe vocabulary (tv/full/unknown) — directly usable in ffmpeg -color_range.
+                // J2K essences often carry no stream-level range tag; fall back to the container
+                // value from MediaInfo, normalized to the same vocabulary.
+                colorRange = ffVideoStream.color_range
+                    ?: videoTrack?.colourRange?.let { range ->
+                        when (range.uppercase()) {
+                            "FULL" -> "full"
+                            "LIMITED" -> "tv"
+                            else -> null
+                        }
+                    },
                 colorSpace = ffVideoStream.color_space,
                 colorTransfer = ffVideoStream.color_transfer,
                 colorPrimaries = ffVideoStream.color_primaries,

@@ -81,6 +81,10 @@ data class VideoTrack(
     val masteringDisplayLuminance: String?,
     @JsonProperty("MasteringDisplay_Luminance_Source")
     val masteringDisplayLuminanceSource: String?,
+    @JsonProperty("MasteringDisplay_Luminance_Min")
+    val masteringDisplayLuminanceMin: String?,
+    @JsonProperty("MasteringDisplay_Luminance_Max")
+    val masteringDisplayLuminanceMax: String?,
     @JsonProperty("MaxCLL")
     val maxContentLightLevel: String?,
     @JsonProperty("MaxFALL")
@@ -89,18 +93,17 @@ data class VideoTrack(
     val isInterlaced: Boolean?
         get() = scanType?.let { it != "Progressive" }
 
-    // MediaInfo formats MasteringDisplay_Luminance as "min: 0.0001 cd/m2, max: 1000 cd/m2".
     // The peak matters for HDR workflow decisions (e.g. the 1000-nits delivery spec).
+    // Null when the container declares no mastering display.
     val masteringPeakNits: Int?
-        get() = masteringDisplayLuminance?.let { Regex("""max:\s*([\d.]+)\s*cd/m2""").find(it)?.groupValues?.get(1)?.toDoubleOrNull()?.toInt() }
+        get() = masteringDisplayLuminanceMax?.toIntOrNull()
 
     val masteringMinNits: Double?
-        get() = masteringDisplayLuminance?.let { Regex("""min:\s*([\d.]+)\s*cd/m2""").find(it)?.groupValues?.get(1)?.toDoubleOrNull() }
+        get() = masteringDisplayLuminanceMin?.toDoubleOrNull()
 
-    // MaxCLL/MaxFALL arrive as "909 cd/m2" — parsed to plain nits, null when absent.
     val maxCllNits: Int?
-        get() = maxContentLightLevel?.let { Regex("""([\d.]+)""").find(it)?.groupValues?.get(1)?.toDoubleOrNull()?.toInt() }
+        get() = maxContentLightLevel?.toIntOrNull()
 
     val maxFallNits: Int?
-        get() = maxFrameAverageLightLevel?.let { Regex("""([\d.]+)""").find(it)?.groupValues?.get(1)?.toDoubleOrNull()?.toInt() }
+        get() = maxFrameAverageLightLevel?.toIntOrNull()
 }

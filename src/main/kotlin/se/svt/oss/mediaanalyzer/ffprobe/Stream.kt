@@ -35,7 +35,6 @@ interface Stream {
     val codec_long_name: String?
     val profile: String?
     val codec_type: String?
-    val codec_time_base: FractionString?
     val codec_tag: String
     val codec_tag_string: String
     val r_frame_rate: FractionString
