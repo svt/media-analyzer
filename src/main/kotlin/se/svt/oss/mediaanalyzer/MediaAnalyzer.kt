@@ -160,7 +160,11 @@ class MediaAnalyzer
                 colorSpace = ffVideoStream.color_space,
                 colorTransfer = ffVideoStream.color_transfer,
                 colorPrimaries = ffVideoStream.color_primaries,
-                codecTagString = ffVideoStream.codec_tag_string
+                codecTagString = ffVideoStream.codec_tag_string,
+                masteringPeakNits = videoTrack?.masteringPeakNits,
+                masteringMinNits = videoTrack?.masteringMinNits,
+                maxCllNits = videoTrack?.maxCllNits,
+                maxFallNits = videoTrack?.maxFallNits,
             )
         }
     }

@@ -290,6 +290,20 @@ internal class MediaAnalyzerTest {
             .isInstanceOf(AudioFile::class.java)
     }
 
+    @Test
+    fun testDoviMasteringMetadata() {
+        mockMediaInfo("/mediainfo-dovi.json")
+        mockFfprobe("/ffprobe-dovi.json")
+
+        val videoFile = MediaAnalyzer().analyze(file, false) as VideoFile
+        val videoStream = videoFile.videoStreams[0]
+        assertThat(videoStream)
+            .hasMasteringPeakNits(1000)
+            .hasMasteringMinNits(0.0001)
+            .hasMaxCllNits(909)
+            .hasMaxFallNits(199)
+    }
+
     private fun mockFfprobe(jsonPath: String) {
         every { anyConstructed<FfprobeAnalyzer>().analyze(file, any()) } returns parse(jsonPath)
     }
