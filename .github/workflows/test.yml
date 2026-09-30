@@ -13,5 +13,6 @@ jobs:
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v6
-        with:
-          arguments: clean build -PskipIntegrationTests
+
+      - name: Build
+        run: ./gradlew clean build -PskipIntegrationTests
