@@ -1,0 +1,37 @@
+{
+  "streams": [
+    {
+      "index": 0,
+      "codec_name": "jpeg2000",
+      "codec_type": "video",
+      "codec_tag_string": "[0][0][0][0]",
+      "codec_tag": "0x0000",
+      "width": 3840,
+      "height": 2160,
+      "pix_fmt": "rgb48le",
+      "color_range": "pc",
+      "color_space": "bt2020nc",
+      "color_transfer": "smpte2084",
+      "color_primaries": "bt2020",
+      "bits_per_raw_sample": "12",
+      "r_frame_rate": "25/1",
+      "avg_frame_rate": "25/1",
+      "time_base": "1/25",
+      "start_time": "0.000000",
+      "duration": "8.040000",
+      "nb_frames": "201"
+    }
+  ],
+  "format": {
+    "filename": "/path/to/file",
+    "nb_streams": 1,
+    "nb_programs": 0,
+    "format_name": "mxf",
+    "format_long_name": "Material Exchange Format",
+    "start_time": "0.000000",
+    "duration": "8.040000",
+    "size": "803736762",
+    "bit_rate": "799738072",
+    "probe_score": 100
+  }
+}

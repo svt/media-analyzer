@@ -27,5 +27,9 @@ data class VideoStream(
     val colorSpace: String?,
     val colorTransfer: String?,
     val colorPrimaries: String?,
-    val codecTagString: String?
+    val codecTagString: String?,
+    val masteringPeakNits: Int? = null,
+    val masteringMinNits: Double? = null,
+    val maxCllNits: Int? = null,
+    val maxFallNits: Int? = null,
 )

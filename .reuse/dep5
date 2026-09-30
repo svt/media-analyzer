@@ -4,6 +4,10 @@ Files: .gitignore
 Copyright: 2020 Sveriges Television AB
 License: CC0-1.0
 
+Files: .editorconfig
+Copyright: 2026 Sveriges Television AB
+License: CC0-1.0
+
 Files: *.md
 Copyright: 2020 Sveriges Television AB
 License: CC0-1.0

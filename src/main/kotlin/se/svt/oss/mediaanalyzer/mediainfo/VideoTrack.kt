@@ -80,8 +80,28 @@ data class VideoTrack(
     @JsonProperty("MasteringDisplay_Luminance")
     val masteringDisplayLuminance: String?,
     @JsonProperty("MasteringDisplay_Luminance_Source")
-    val masteringDisplayLuminanceSource: String?
+    val masteringDisplayLuminanceSource: String?,
+    @JsonProperty("MasteringDisplay_Luminance_Min")
+    val masteringDisplayLuminanceMin: String?,
+    @JsonProperty("MasteringDisplay_Luminance_Max")
+    val masteringDisplayLuminanceMax: String?,
+    @JsonProperty("MaxCLL")
+    val maxContentLightLevel: String?,
+    @JsonProperty("MaxFALL")
+    val maxFrameAverageLightLevel: String?,
 ) : Track {
     val isInterlaced: Boolean?
         get() = scanType?.let { it != "Progressive" }
+
+    val masteringPeakNits: Int?
+        get() = masteringDisplayLuminanceMax?.toIntOrNull()
+
+    val masteringMinNits: Double?
+        get() = masteringDisplayLuminanceMin?.toDoubleOrNull()
+
+    val maxCllNits: Int?
+        get() = maxContentLightLevel?.toIntOrNull()
+
+    val maxFallNits: Int?
+        get() = maxFrameAverageLightLevel?.toIntOrNull()
 }

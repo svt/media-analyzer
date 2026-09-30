@@ -6,11 +6,11 @@ plugins {
     `java-library`
     `maven-publish`
     kotlin("jvm") version "1.9.25"
-    id("com.github.fhermansson.assertj-generator") version "1.1.5"
-    id("org.jmailen.kotlinter") version "3.10.0"
-    id("pl.allegro.tech.build.axion-release") version "1.18.18"
-    id("com.github.ben-manes.versions") version "0.51.0"
-    id("org.jreleaser") version "1.20.0"
+    id("com.github.fhermansson.assertj-generator") version "2.0.1"
+    id("org.jmailen.kotlinter") version "3.16.0"
+    id("pl.allegro.tech.build.axion-release") version "1.21.4"
+    id("com.github.ben-manes.versions") version "0.64.0"
+    id("org.jreleaser") version "1.26.0"
 }
 
 scmVersion {
@@ -33,21 +33,10 @@ apply {
 
 tasks.test {
     useJUnitPlatform {
-        if (project.hasProperty("runIntegrationTest")) {
+        if (providers.gradleProperty("skipIntegrationTests").isPresent) {
             excludeTags("integrationTest")
         }
     }
-}
-
-tasks.lintKotlinTest {
-    source = (source - fileTree("src/test/generated-java")).asFileTree
-}
-tasks.formatKotlinTest {
-    source = (source - fileTree("src/test/generated-java")).asFileTree
-}
-
-kotlinter {
-    disabledRules = arrayOf("import-ordering")
 }
 
 fun isNonStable(version: String): Boolean {
@@ -64,7 +53,7 @@ tasks.withType<DependencyUpdatesTask> {
 }
 
 assertjGenerator {
-    classOrPackageNames = arrayOf("se.svt.oss.mediaanalyzer", "org.apache.commons.math3.fraction")
+    classOrPackageNames = listOf("se.svt.oss.mediaanalyzer", "org.apache.commons.math3.fraction")
     entryPointPackage = "se.svt.oss.mediaanalyzer"
 }
 
@@ -112,16 +101,16 @@ publishing {
 }
 
 dependencies {
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.18.3")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.20.2")
     implementation("io.github.microutils:kotlin-logging:3.0.5")
     api("org.apache.commons:commons-math3:3.6.1")
-    testImplementation("javax.annotation:javax.annotation-api:1.3.2")
+    testImplementation("jakarta.annotation:jakarta.annotation-api:2.1.1")
     testImplementation("io.mockk:mockk:1.13.17")
-    testImplementation("org.assertj:assertj-core:3.20.2")
-    testImplementation(platform("org.junit:junit-bom:5.12.0"))
+    testImplementation("org.assertj:assertj-core:3.27.7")
+    testImplementation(platform("org.junit:junit-bom:5.14.4"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    testRuntimeOnly("ch.qos.logback:logback-classic:1.5.17")
+    testRuntimeOnly("ch.qos.logback:logback-classic:1.6.4")
 }
 
 kotlin {
@@ -129,5 +118,5 @@ kotlin {
 }
 tasks.wrapper {
     distributionType = Wrapper.DistributionType.ALL
-    gradleVersion = "8.14.3"
+    gradleVersion = "9.8.0"
 }

@@ -14,7 +14,6 @@ data class FfVideoStream(
     override val codec_long_name: String?,
     override val profile: String?,
     override val codec_type: String?,
-    override val codec_time_base: FractionString?,
     override val codec_tag: String,
     override val codec_tag_string: String,
     override val r_frame_rate: FractionString,
@@ -45,5 +44,5 @@ data class FfVideoStream(
     val field_order: String?,
     val timecode: String?,
     val refs: Int?,
-    val side_data_list: List<SideData> = emptyList()
+    val side_data_list: List<SideData> = emptyList(),
 ) : Stream
