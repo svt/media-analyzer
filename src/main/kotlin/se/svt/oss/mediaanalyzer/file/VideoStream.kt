@@ -28,9 +28,7 @@ data class VideoStream(
     val colorTransfer: String?,
     val colorPrimaries: String?,
     val codecTagString: String?,
-    // Parsed from MediaInfo MasteringDisplay_Luminance/MaxCLL/MaxFALL. Null when the
-    // container declares none (common for DoVi mezzanines) — consumers must treat null
-    // as "unknown", not as a value.
+    // Null when the container declares no mastering display or light level.
     val masteringPeakNits: Int? = null,
     val masteringMinNits: Double? = null,
     val maxCllNits: Int? = null,

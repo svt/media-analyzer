@@ -44,5 +44,5 @@ data class FfVideoStream(
     val field_order: String?,
     val timecode: String?,
     val refs: Int?,
-    val side_data_list: List<SideData> = emptyList()
+    val side_data_list: List<SideData> = emptyList(),
 ) : Stream

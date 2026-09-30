@@ -13,38 +13,39 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo
     include = JsonTypeInfo.As.PROPERTY,
     use = JsonTypeInfo.Id.NAME,
     property = "@type",
-    defaultImpl = OtherTrack::class
+    defaultImpl = OtherTrack::class,
 )
 @JsonSubTypes(
     JsonSubTypes.Type(
         value = GeneralTrack::class,
-        name = "General"
+        name = "General",
     ),
     JsonSubTypes.Type(
         value = VideoTrack::class,
-        name = "Video"
+        name = "Video",
     ),
     JsonSubTypes.Type(
         value = AudioTrack::class,
-        name = "Audio"
+        name = "Audio",
     ),
     JsonSubTypes.Type(
         value = ImageTrack::class,
-        name = "Image"
+        name = "Image",
     ),
     JsonSubTypes.Type(
         value = TextTrack::class,
-        name = "Text"
+        name = "Text",
     ),
     JsonSubTypes.Type(
         value = OtherTrack::class,
-        name = "Other"
-    )
+        name = "Other",
+    ),
 )
 @JsonIgnoreProperties(ignoreUnknown = true)
 interface Track {
     @get:JsonProperty("Format")
     val format: String
+
     @get:JsonProperty("extra")
     val extra: Map<String, Any>
 }

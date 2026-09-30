@@ -21,7 +21,7 @@ class MediaInfoAnalyzer
         }
         val (exitCode, mediaInfo) = ProcessUtil.runAndParse<MediaInfo>(
             objectMapper,
-            *args.toTypedArray()
+            *args.toTypedArray(),
         )
         if (exitCode != 0) {
             throw RuntimeException("mediainfo returned exit code: $exitCode")

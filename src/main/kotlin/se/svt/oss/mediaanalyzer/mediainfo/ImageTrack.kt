@@ -14,5 +14,5 @@ data class ImageTrack(
     @JsonProperty("Width")
     val width: Int,
     @JsonProperty("Height")
-    val height: Int
+    val height: Int,
 ) : Track

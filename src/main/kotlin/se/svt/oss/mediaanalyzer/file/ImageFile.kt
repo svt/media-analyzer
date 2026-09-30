@@ -12,7 +12,7 @@ data class ImageFile(
     override val fileSize: Long,
     override val format: String,
     val width: Int,
-    val height: Int
+    val height: Int,
 ) : MediaFile {
     override val type: String
         get() = "ImageFile"

@@ -8,5 +8,5 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class UnknownSideData(
-    override val side_data_type: String?
+    override val side_data_type: String?,
 ) : SideData

@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName
 data class SubtitleFile(
     override val file: String,
     override val fileSize: Long,
-    override val format: String
+    override val format: String,
 ) : MediaFile {
     override val type: String
         get() = "SubtitleFile"

@@ -13,5 +13,5 @@ data class Format(
     val format_long_name: String?,
     val duration: Double,
     val size: Long,
-    val bit_rate: Long
+    val bit_rate: Long,
 )

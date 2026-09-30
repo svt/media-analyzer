@@ -66,7 +66,7 @@ class MediaAnalyzerIntegrationTest {
         assertThat(videoFile.audioStreams)
             .extracting("bitrate")
             .containsExactly(
-                384000L
+                384000L,
             )
     }
 
@@ -127,7 +127,7 @@ class MediaAnalyzerIntegrationTest {
                     "f" to "s16le",
                     "ar" to "22050",
                     "invalid_parameter_should_be_filtered" to "something",
-                )
+                ),
             )
         assertThat(audioFile).isInstanceOf(AudioFile::class.java)
         assertThat(audioFile as AudioFile)

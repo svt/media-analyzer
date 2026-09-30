@@ -12,5 +12,5 @@ data class Media(
     @JsonProperty("@ref")
     val ref: String,
     @JsonProperty("track")
-    val tracks: List<Track>
+    val tracks: List<Track>,
 )

@@ -93,8 +93,6 @@ data class VideoTrack(
     val isInterlaced: Boolean?
         get() = scanType?.let { it != "Progressive" }
 
-    // The peak matters for HDR workflow decisions (e.g. the 1000-nits delivery spec).
-    // Null when the container declares no mastering display.
     val masteringPeakNits: Int?
         get() = masteringDisplayLuminanceMax?.toIntOrNull()
 

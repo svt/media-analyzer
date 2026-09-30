@@ -9,5 +9,5 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class TextTrack(
     override val format: String,
-    override val extra: Map<String, Any> = emptyMap()
+    override val extra: Map<String, Any> = emptyMap(),
 ) : Track

@@ -26,5 +26,5 @@ data class UnknownStream(
     override val bit_rate: Long?,
     override val max_bitrate: Long?,
     override val bits_per_raw_sample: Int?,
-    override val nb_frames: Int?
+    override val nb_frames: Int?,
 ) : Stream

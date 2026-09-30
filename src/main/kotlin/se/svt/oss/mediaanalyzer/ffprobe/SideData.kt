@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo
     use = JsonTypeInfo.Id.NAME,
     visible = true,
     property = "side_data_type",
-    defaultImpl = UnknownSideData::class
+    defaultImpl = UnknownSideData::class,
 )
 @JsonSubTypes(
     JsonSubTypes.Type(value = DisplayMatrix::class, name = "Display Matrix"),

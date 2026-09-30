@@ -24,5 +24,5 @@ data class GeneralTrack(
     @JsonProperty("TextCount")
     val textCount: Int = 0,
     @JsonProperty("OverallBitRate")
-    val overallBitrate: Long?
+    val overallBitrate: Long?,
 ) : Track

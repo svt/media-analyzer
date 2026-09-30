@@ -31,5 +31,5 @@ data class FfAudioStream(
     val sample_rate: Int?,
     val channels: Int,
     val channel_layout: String?,
-    val bits_per_sample: Int?
+    val bits_per_sample: Int?,
 ) : Stream

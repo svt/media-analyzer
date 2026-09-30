@@ -22,11 +22,11 @@ case AVMEDIA_TYPE_VIDEO:      return "video";
     use = JsonTypeInfo.Id.NAME,
     visible = true,
     property = "codec_type",
-    defaultImpl = UnknownStream::class
+    defaultImpl = UnknownStream::class,
 )
 @JsonSubTypes(
     JsonSubTypes.Type(value = FfVideoStream::class, name = "video"),
-    JsonSubTypes.Type(value = FfAudioStream::class, name = "audio")
+    JsonSubTypes.Type(value = FfAudioStream::class, name = "audio"),
 )
 @JsonIgnoreProperties(ignoreUnknown = true)
 interface Stream {
