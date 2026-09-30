@@ -28,7 +28,6 @@ data class VideoStream(
     val colorTransfer: String?,
     val colorPrimaries: String?,
     val codecTagString: String?,
-    // Null when the container declares no mastering display or light level.
     val masteringPeakNits: Int? = null,
     val masteringMinNits: Double? = null,
     val maxCllNits: Int? = null,

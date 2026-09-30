@@ -53,5 +53,3 @@ This software is released under the:
 [Apache License 2.0](LICENSE)
 
 Copyright 2020 Sveriges Television AB
-
-## Primary Maintainers
