@@ -55,40 +55,24 @@ data class VideoTrack(
     val hdrFormatCompatibility: String?,
     @JsonProperty("colour_description_present")
     val colourDescriptionPresent: String?,
-    @JsonProperty("colour_description_present_Source")
-    val colourDescriptionPresentSource: String?,
     @JsonProperty("colour_range")
     val colourRange: String?,
-    @JsonProperty("colour_range_Source")
-    val colourRangeSource: String?,
     @JsonProperty("colour_primaries")
     val colourPrimaries: String?,
-    @JsonProperty("colour_primaries_Source")
-    val colourPrimariesSource: String?,
     @JsonProperty("transfer_characteristics")
     val transferCharacteristics: String?,
-    @JsonProperty("transfer_characteristics_Source")
-    val transferCharacteristicsSource: String?,
     @JsonProperty("matrix_coefficients")
     val matrixCoefficients: String?,
-    @JsonProperty("matrix_coefficients_Source")
-    val matrixCoefficientsSource: String?,
     @JsonProperty("MasteringDisplay_ColorPrimaries")
     val masteringDisplayColourPrimaries: String?,
-    @JsonProperty("MasteringDisplay_ColorPrimaries_Source")
-    val masteringDisplayColourPrimariesSource: String?,
-    @JsonProperty("MasteringDisplay_Luminance")
-    val masteringDisplayLuminance: String?,
-    @JsonProperty("MasteringDisplay_Luminance_Source")
-    val masteringDisplayLuminanceSource: String?,
     @JsonProperty("MasteringDisplay_Luminance_Min")
-    val masteringDisplayLuminanceMin: String?,
+    private val masteringDisplayLuminanceMin: String?,
     @JsonProperty("MasteringDisplay_Luminance_Max")
-    val masteringDisplayLuminanceMax: String?,
+    private val masteringDisplayLuminanceMax: String?,
     @JsonProperty("MaxCLL")
-    val maxContentLightLevel: String?,
+    private val maxContentLightLevel: String?,
     @JsonProperty("MaxFALL")
-    val maxFrameAverageLightLevel: String?,
+    private val maxFrameAverageLightLevel: String?,
 ) : Track {
     val isInterlaced: Boolean?
         get() = scanType?.let { it != "Progressive" }
