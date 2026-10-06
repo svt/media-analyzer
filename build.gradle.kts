@@ -114,7 +114,14 @@ dependencies {
 }
 
 kotlin {
-    jvmToolchain(17)
+    compilerOptions {
+        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
+        freeCompilerArgs.add("-Xjdk-release=17")
+    }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
 }
 tasks.wrapper {
     distributionType = Wrapper.DistributionType.ALL
