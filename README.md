@@ -16,6 +16,10 @@ and merges the result into one data model.
 - Java 17+
 - ffprobe and MediaInfo on the PATH (8.x / 26.x or later recommended — the field mappings
   follow current output shapes)
+- MediaInfo >= 25.09 for the HDR mastering and light-level fields
+  (`masteringPeakNits`, `masteringMinNits`, `maxCllNits`, `maxFallNits`): the split
+  `MasteringDisplay_Luminance_Min`/`_Max` fields first appear in that release, and older
+  versions report these values as null.
 
 ## Usage
 

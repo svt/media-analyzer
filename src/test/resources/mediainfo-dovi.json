@@ -1,61 +1,82 @@
 {
   "creatingLibrary": {
     "name": "MediaInfoLib",
-    "version": "26.05"
+    "version": "26.05",
+    "url": "https://mediaarea.net/MediaInfo"
   },
   "media": {
-    "@ref": "ASSETMAP.xml",
+    "@ref": "video.mxf",
     "track": [
       {
         "@type": "General",
         "VideoCount": "1",
         "AudioCount": "1",
+        "OtherCount": "3",
         "FileExtension": "xml",
         "Format": "IMF AM",
-        "Duration": "8.040"
+        "FileSize": "4462035078",
+        "Duration": "146.240",
+        "OverallBitRate": "244093823",
+        "FrameRate": "25.000",
+        "FrameCount": "3656",
+        "StreamSize": "1800",
+        "EncodedBy": "Blackmagic Design",
+        "Encoded_Date": "2025-08-15 13:28:50",
+        "File_Modified_Date": "2025-08-20 11:41:58 UTC",
+        "File_Modified_Date_Local": "2025-08-20 13:41:58",
+        "Encoded_Library": "Blackmagic Design DaVinci Resolve Studio 19.1.2.0003",
+        "Encoded_Library_Name": "Blackmagic Design DaVinci Resolve Studio",
+        "Encoded_Library_Version": "19.1.2.0003"
       },
       {
         "@type": "Video",
         "ID": "1-2-2",
+        "UniqueID": "urn:uuid:ee0c4ad3-289b-415b-a6f7-9e0c3b36b082",
         "Format": "JPEG 2000",
         "Format_Profile": "IMFS4k",
-        "Duration": "8.040",
-        "BitRate": "799738072",
+        "Format_Level": "ML6SL2",
+        "HDR_Format": "SMPTE ST 2086 / Dolby Vision Metadata",
+        "HDR_Format_Version": " / 4.0.2",
+        "MuxingMode": "IMF CPL / MXF",
+        "CodecID": "0D010301020C0600-0401020203010311",
+        "Duration": "146.240",
+        "BitRate": "237164202",
         "Width": "3840",
         "Height": "2160",
+        "Sampled_Width": "3840",
+        "Sampled_Height": "2160",
         "PixelAspectRatio": "1.000",
         "DisplayAspectRatio": "1.778",
+        "ActiveFormatDescription": "8",
         "FrameRate": "25.000",
         "FrameRate_Num": "25",
         "FrameRate_Den": "1",
-        "FrameCount": "201",
+        "FrameCount": "3656",
         "ColorSpace": "RGB",
         "BitDepth": "12",
         "ScanType": "Progressive",
+        "StreamSize": "4335361613",
+        "Title": "PHDR Image Track",
         "colour_range": "Full",
-        "colour_primaries": "BT.2020",
+        "colour_range_Source": "Container / ContainerExtra",
+        "colour_primaries": "Display P3",
+        "colour_primaries_Source": "Container / ContainerExtra",
         "transfer_characteristics": "PQ",
-        "matrix_coefficients": "BT.2020 non-constant",
-        "MasteringDisplay_ColorPrimaries": "BT.2020",
+        "transfer_characteristics_Source": "Container / ContainerExtra",
+        "MasteringDisplay_ColorPrimaries": "Display P3",
+        "MasteringDisplay_ColorPrimaries_Source": "Container / ContainerExtra",
         "MasteringDisplay_Luminance": "min: 0.0001 cd/m2, max: 1000 cd/m2",
-        "MaxCLL": "909",
-        "MaxFALL": "199",
-        "HDR_Format": "SMPTE ST 2086 / Dolby Vision Metadata",
-        "extra": {
-          "Source_Original": "VIDEO_dovi.mxf"
-        },
+        "MasteringDisplay_Luminance_Source": "Container / ContainerExtra",
         "MasteringDisplay_Luminance_Min": "0.0001",
-        "MasteringDisplay_Luminance_Max": "1000"
-      },
-      {
-        "@type": "Audio",
-        "ID": "1-3-1",
-        "Format": "IAB",
-        "Duration": "8.040",
-        "Channels": "10",
-        "SamplingRate": "48000",
+        "MasteringDisplay_Luminance_Max": "1000",
+        "MaxCLL": "591",
+        "MaxCLL_Source": "ContainerExtra",
+        "MaxFALL": "7",
+        "MaxFALL_Source": "ContainerExtra",
         "extra": {
-          "Source_Original": "AUDIO_atmos.mxf"
+          "Comment": "Kakadu-v8.4",
+          "Source": "CPL_1e6d02c9-55b1-4483-bede-e02bb75ea169.xml",
+          "Source_Original": "VIDEO_ee0c4ad3-289b-415b-a6f7-9e0c3b36b082.mxf"
         }
       }
     ]

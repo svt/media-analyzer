@@ -162,13 +162,21 @@ class MediaAnalyzer
                 numFrames = numFrames,
                 isInterlaced = interlaced,
                 transferCharacteristics = videoTrack?.transferCharacteristics,
-                // ffprobe vocabulary; falls back to the MediaInfo container value when the
-                // stream carries no range tag
+                // Normalized to the full/limited vocabulary (contract on VideoStream.colorRange).
+                // ffprobe's own values are forwardable to ffmpeg, so pass through; MediaInfo is
+                // only a fallback, so unexpected values there mean "unknown" -> null.
                 colorRange = ffVideoStream.color_range
+                    ?.let { range ->
+                        when (range.uppercase()) {
+                            "FULL", "PC" -> "full"
+                            "LIMITED", "TV" -> "limited"
+                            else -> range
+                        }
+                    }
                     ?: videoTrack?.colourRange?.let { range ->
                         when (range.uppercase()) {
                             "FULL" -> "full"
-                            "LIMITED" -> "tv"
+                            "LIMITED" -> "limited"
                             else -> null
                         }
                     },

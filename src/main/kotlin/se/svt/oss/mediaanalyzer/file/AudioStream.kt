@@ -4,6 +4,9 @@
 
 package se.svt.oss.mediaanalyzer.file
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class AudioStream(
     val format: String?,
     val codec: String?,

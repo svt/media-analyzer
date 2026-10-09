@@ -4,9 +4,11 @@
 
 package se.svt.oss.mediaanalyzer.file
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonTypeName
 
 @JsonTypeName("AudioFile")
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class AudioFile(
     override val file: String,
     override val fileSize: Long,

@@ -9,7 +9,7 @@ plugins {
     id("com.github.fhermansson.assertj-generator") version "2.0.1"
     id("org.jmailen.kotlinter") version "3.16.0"
     id("pl.allegro.tech.build.axion-release") version "1.21.4"
-    id("com.github.ben-manes.versions") version "0.64.0"
+    id("io.github.ben-manes.versions") version "0.64.0"
     id("org.jreleaser") version "1.26.0"
 }
 
