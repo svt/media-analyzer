@@ -25,7 +25,7 @@ import se.svt.oss.mediaanalyzer.mediainfo.TextTrack
 class MediaAnalyzer
 @JvmOverloads constructor(
     objectMapper: ObjectMapper = ObjectMapper().findAndRegisterModules(),
-    filterValidFfprobeParams: Boolean = true
+    filterValidFfprobeParams: Boolean = true,
 ) {
 
     private val ffprobeAnalyzer = FfprobeAnalyzer(objectMapper, filterValidFfprobeParams)
@@ -37,7 +37,7 @@ class MediaAnalyzer
         file: String,
         probeInterlaced: Boolean = false,
         disableImageSequenceDetection: Boolean = false,
-        ffprobeInputParams: LinkedHashMap<String, String?> = linkedMapOf()
+        ffprobeInputParams: LinkedHashMap<String, String?> = linkedMapOf(),
     ): MediaFile {
         val mediaInfo = try {
             mediaInfoAnalyzer.analyze(file, disableImageSequenceDetection)
@@ -53,7 +53,7 @@ class MediaAnalyzer
                 fileSize = generalTrack.fileSize,
                 format = imageTrack.format,
                 width = imageTrack.width,
-                height = imageTrack.height
+                height = imageTrack.height,
             )
         }
         if (mediaInfo?.isSubtitle == true) {
@@ -62,7 +62,7 @@ class MediaAnalyzer
             return SubtitleFile(
                 file = mediaInfo.file,
                 fileSize = generalTrack.fileSize,
-                format = textTrack.format
+                format = textTrack.format,
             )
         }
 
@@ -74,7 +74,7 @@ class MediaAnalyzer
         probeResult: ProbeResult,
         mediaInfo: MediaInfo?,
         probeInterlaced: Boolean,
-        ffprobeInputParams: LinkedHashMap<String, String?>
+        ffprobeInputParams: LinkedHashMap<String, String?>,
     ): MediaFile {
         val format = probeResult.format ?: throw IllegalStateException("No format detected in ffprobe result!")
         val formatName = mediaInfo?.generalTrack?.format ?: format.format_name
@@ -95,7 +95,7 @@ class MediaAnalyzer
                 overallBitrate = overallBitrate,
                 duration = duration,
                 audioStreams = audioStreams(probeResult, mediaInfo),
-                isTruncated = mediaInfo?.isTruncated == true
+                isTruncated = mediaInfo?.isTruncated == true,
             )
         }
         return VideoFile(
@@ -106,7 +106,7 @@ class MediaAnalyzer
             duration = duration,
             videoStreams = videoStreams(probeResult, mediaInfo, probeInterlaced, ffprobeInputParams),
             audioStreams = audioStreams(probeResult, mediaInfo),
-            isTruncated = mediaInfo?.isTruncated == true
+            isTruncated = mediaInfo?.isTruncated == true,
         )
     }
 
@@ -114,11 +114,13 @@ class MediaAnalyzer
         probeResult: ProbeResult,
         mediaInfo: MediaInfo?,
         probeInterlaced: Boolean,
-        ffprobeInputParams: LinkedHashMap<String, String?>
+        ffprobeInputParams: LinkedHashMap<String, String?>,
     ): List<VideoStream> {
         val videoStreams = probeResult.videoStreams
         val mediaInfoStreams = mediaInfo?.videoTracks?.let {
-            if (it.size == videoStreams.size) it else {
+            if (it.size == videoStreams.size) {
+                it
+            } else {
                 log.warn { "Number of video streams differ! ffprobe: ${videoStreams.size}, mediainfo: ${it.size}. Using only ffprobe values." }
                 emptyList()
             }
@@ -129,11 +131,15 @@ class MediaAnalyzer
             val duration = ffVideoStream.duration ?: probeResult.format!!.duration
             val numFrames = ffVideoStream.nb_frames
                 ?: (ffVideoStream.r_frame_rate.toFraction().toDouble() * duration).toInt()
-            val interlaced = if (probeInterlaced) ffprobeAnalyzer.isInterlaced(
-                probeResult.format!!.filename,
-                index,
-                ffprobeInputParams
-            ) else videoTrack?.isInterlaced ?: false
+            val interlaced = if (probeInterlaced) {
+                ffprobeAnalyzer.isInterlaced(
+                    probeResult.format!!.filename,
+                    index,
+                    ffprobeInputParams,
+                )
+            } else {
+                videoTrack?.isInterlaced ?: false
+            }
 
             val rotation =
                 ffVideoStream.side_data_list.filterIsInstance<DisplayMatrix>().firstNotNullOfOrNull { it.rotation }
@@ -156,11 +162,32 @@ class MediaAnalyzer
                 numFrames = numFrames,
                 isInterlaced = interlaced,
                 transferCharacteristics = videoTrack?.transferCharacteristics,
-                colorRange = ffVideoStream.color_range,
+                // Normalized to the full/limited vocabulary (contract on VideoStream.colorRange).
+                // ffprobe's own values are forwardable to ffmpeg, so pass through; MediaInfo is
+                // only a fallback, so unexpected values there mean "unknown" -> null.
+                colorRange = ffVideoStream.color_range
+                    ?.let { range ->
+                        when (range.uppercase()) {
+                            "FULL", "PC" -> "full"
+                            "LIMITED", "TV" -> "limited"
+                            else -> range
+                        }
+                    }
+                    ?: videoTrack?.colourRange?.let { range ->
+                        when (range.uppercase()) {
+                            "FULL" -> "full"
+                            "LIMITED" -> "limited"
+                            else -> null
+                        }
+                    },
                 colorSpace = ffVideoStream.color_space,
                 colorTransfer = ffVideoStream.color_transfer,
                 colorPrimaries = ffVideoStream.color_primaries,
-                codecTagString = ffVideoStream.codec_tag_string
+                codecTagString = ffVideoStream.codec_tag_string,
+                masteringPeakNits = videoTrack?.masteringPeakNits,
+                masteringMinNits = videoTrack?.masteringMinNits,
+                maxCllNits = videoTrack?.maxCllNits,
+                maxFallNits = videoTrack?.maxFallNits,
             )
         }
     }
@@ -168,7 +195,9 @@ class MediaAnalyzer
     private fun audioStreams(probeResult: ProbeResult, mediaInfo: MediaInfo?): List<AudioStream> {
         val audioStreams = probeResult.audioStreams
         val mediaInfoStreams = mediaInfo?.audioTracks?.let {
-            if (it.size == audioStreams.size) it else {
+            if (it.size == audioStreams.size) {
+                it
+            } else {
                 log.warn { "Number of audio streams differ! ffprobe: ${audioStreams.size}, mediainfo: ${it.size}. Using only ffprobe values." }
                 emptyList()
             }
@@ -184,7 +213,7 @@ class MediaAnalyzer
                 channelLayout = ffAudioStream.channel_layout,
                 samplingRate = ffAudioStream.sample_rate ?: audioTrack?.samplingRate,
                 bitrate = ffAudioStream.bit_rate ?: audioTrack?.bitrate,
-                profile = ffAudioStream.profile
+                profile = ffAudioStream.profile,
             )
         }
     }

@@ -4,13 +4,15 @@
 
 package se.svt.oss.mediaanalyzer.file
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonTypeName
 
 @JsonTypeName("SubtitleFile")
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class SubtitleFile(
     override val file: String,
     override val fileSize: Long,
-    override val format: String
+    override val format: String,
 ) : MediaFile {
     override val type: String
         get() = "SubtitleFile"

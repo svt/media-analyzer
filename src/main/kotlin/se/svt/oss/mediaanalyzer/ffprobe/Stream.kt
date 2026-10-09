@@ -22,11 +22,11 @@ case AVMEDIA_TYPE_VIDEO:      return "video";
     use = JsonTypeInfo.Id.NAME,
     visible = true,
     property = "codec_type",
-    defaultImpl = UnknownStream::class
+    defaultImpl = UnknownStream::class,
 )
 @JsonSubTypes(
     JsonSubTypes.Type(value = FfVideoStream::class, name = "video"),
-    JsonSubTypes.Type(value = FfAudioStream::class, name = "audio")
+    JsonSubTypes.Type(value = FfAudioStream::class, name = "audio"),
 )
 @JsonIgnoreProperties(ignoreUnknown = true)
 interface Stream {
@@ -35,7 +35,6 @@ interface Stream {
     val codec_long_name: String?
     val profile: String?
     val codec_type: String?
-    val codec_time_base: FractionString?
     val codec_tag: String
     val codec_tag_string: String
     val r_frame_rate: FractionString

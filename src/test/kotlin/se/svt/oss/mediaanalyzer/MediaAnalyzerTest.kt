@@ -102,7 +102,7 @@ internal class MediaAnalyzerTest {
                 Tuple(416, 234),
                 Tuple(960, 540),
                 Tuple(1280, 720),
-                Tuple(1920, 1080)
+                Tuple(1920, 1080),
             )
     }
 
@@ -270,7 +270,7 @@ internal class MediaAnalyzerTest {
             .hasColorSpace("bt709")
             .hasColorTransfer("bt709")
             .hasColorPrimaries("bt709")
-            .hasColorRange("tv")
+            .hasColorRange("limited")
     }
 
     @Test
@@ -288,6 +288,53 @@ internal class MediaAnalyzerTest {
         val mediaFile = MediaAnalyzer().analyze(file, false)
         assertThat(mediaFile)
             .isInstanceOf(AudioFile::class.java)
+    }
+
+    @Test
+    fun testDoviMasteringMetadata() {
+        mockMediaInfo("/mediainfo-dovi.json")
+        mockFfprobe("/ffprobe-dovi.json")
+
+        val videoFile = MediaAnalyzer().analyze(file, false) as VideoFile
+        val videoStream = videoFile.videoStreams[0]
+        assertThat(videoStream)
+            .hasMasteringPeakNits(1000)
+            .hasMasteringMinNits(0.0001)
+            .hasMaxCllNits(591)
+            .hasMaxFallNits(7)
+            .hasColorRange("full")
+    }
+
+    @Test
+    fun testColorRangeFallsBackToMediaInfoWhenFfprobeHasNone() {
+        mockMediaInfo("/mediainfo-iphone.json")
+        mockFfprobe("/ffprobe-iphone-no-color-range.json")
+
+        val videoFile = MediaAnalyzer().analyze(file, false) as VideoFile
+        assertThat(videoFile.videoStreams[0])
+            .hasColorRange("limited")
+    }
+
+    @Test
+    fun testColorRangePassesThroughUnrecognizedFfprobeValue() {
+        mockMediaInfo("/mediainfo-iphone.json")
+        // Current ffprobe omits the key instead of reporting unknown values,
+        // so this fixture is synthetic: it pins the pass-through contract.
+        mockFfprobe("/ffprobe-future-color-range.json")
+
+        val videoFile = MediaAnalyzer().analyze(file, false) as VideoFile
+        assertThat(videoFile.videoStreams[0])
+            .hasColorRange("futureval")
+    }
+
+    @Test
+    fun testColorRangeNullWhenUnrecognizedMediaInfoValueAndNoFfprobeValue() {
+        mockMediaInfo("/mediainfo-unsupported-range.json")
+        mockFfprobe("/ffprobe-iphone-no-color-range.json")
+
+        val videoFile = MediaAnalyzer().analyze(file, false) as VideoFile
+        assertThat(videoFile.videoStreams[0])
+            .hasColorRange(null)
     }
 
     private fun mockFfprobe(jsonPath: String) {

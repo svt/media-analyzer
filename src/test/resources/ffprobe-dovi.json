@@ -1,0 +1,100 @@
+{
+  "streams": [
+    {
+      "index": 0,
+      "codec_name": "jpeg2000",
+      "codec_long_name": "JPEG 2000",
+      "profile": "1318",
+      "codec_type": "video",
+      "codec_tag_string": "[0][0][0][0]",
+      "codec_tag": "0x0000",
+      "width": 3840,
+      "height": 2160,
+      "coded_width": 3840,
+      "coded_height": 2160,
+      "has_b_frames": 0,
+      "sample_aspect_ratio": "1:1",
+      "display_aspect_ratio": "16:9",
+      "pix_fmt": "rgb48le",
+      "level": -99,
+      "color_transfer": "smpte2084",
+      "color_primaries": "smpte432",
+      "field_order": "progressive",
+      "r_frame_rate": "25/1",
+      "avg_frame_rate": "25/1",
+      "time_base": "1/25",
+      "start_pts": 0,
+      "start_time": "0.000000",
+      "duration_ts": 3656,
+      "duration": "146.240000",
+      "bits_per_raw_sample": "12",
+      "disposition": {
+        "default": 0,
+        "dub": 0,
+        "original": 0,
+        "comment": 0,
+        "lyrics": 0,
+        "karaoke": 0,
+        "forced": 0,
+        "hearing_impaired": 0,
+        "visual_impaired": 0,
+        "clean_effects": 0,
+        "attached_pic": 0,
+        "timed_thumbnails": 0,
+        "non_diegetic": 0,
+        "captions": 0,
+        "descriptions": 0,
+        "metadata": 0,
+        "dependent": 0,
+        "still_image": 0,
+        "multilayer": 0
+      },
+      "tags": {
+        "file_package_umid": "0x060A2B340101010501010F2013000000EE0C4AD3289B415BA6F79E0C3B36B082",
+        "file_package_name": "VIDEO_ee0c4ad3-289b-415b-a6f7-9e0c3b36b082",
+        "track_name": "PHDR Image Track"
+      },
+      "side_data_list": [
+        {
+          "side_data_type": "Mastering display metadata",
+          "red_x": "34000/50000",
+          "red_y": "16000/50000",
+          "green_x": "13250/50000",
+          "green_y": "34500/50000",
+          "blue_x": "7500/50000",
+          "blue_y": "3000/50000",
+          "white_point_x": "15635/50000",
+          "white_point_y": "16450/50000",
+          "min_luminance": "1/10000",
+          "max_luminance": "10000000/10000"
+        }
+      ]
+    }
+  ],
+  "format": {
+    "filename": "video.mxf",
+    "nb_streams": 1,
+    "nb_programs": 0,
+    "nb_stream_groups": 0,
+    "format_name": "mxf",
+    "format_long_name": "MXF (Material eXchange Format)",
+    "start_time": "0.000000",
+    "duration": "146.240000",
+    "size": "4335398166",
+    "bit_rate": "237166201",
+    "probe_score": 100,
+    "tags": {
+      "operational_pattern_ul": "060e2b34.04010101.0d010201.01010100",
+      "uid": "1087e926-96a9-4075-9b63-734684df9f3e",
+      "generation_uid": "3068626b-96ec-404c-8a87-5522a9a5474d",
+      "company_name": "Blackmagic Design",
+      "product_name": "DaVinci Resolve",
+      "product_version": "19.1.2",
+      "product_uid": "057cd849-178a-4b88-b4c7-825af8761b34",
+      "modification_date": "2025-08-15T11:26:15.260000Z",
+      "application_platform": "DaVinci Resolve",
+      "material_package_umid": "0x060A2B340101010501010F201300000027BABFCDD2CD4AF4A3402D39EAB5D10B",
+      "material_package_name": "VIDEO_ee0c4ad3-289b-415b-a6f7-9e0c3b36b082"
+    }
+  }
+}

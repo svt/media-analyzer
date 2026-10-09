@@ -5,9 +5,11 @@
 package se.svt.oss.mediaanalyzer.file
 
 import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonTypeName
 
 @JsonTypeName("VideoFile")
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class VideoFile(
     override val file: String,
     override val fileSize: Long,

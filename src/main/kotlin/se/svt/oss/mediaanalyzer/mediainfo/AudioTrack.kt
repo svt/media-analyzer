@@ -20,5 +20,5 @@ data class AudioTrack(
     @JsonProperty("SamplingRate")
     val samplingRate: Int,
     @JsonProperty("BitDepth")
-    val bitDepth: Int
+    val bitDepth: Int,
 ) : Track

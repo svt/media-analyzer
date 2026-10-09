@@ -10,13 +10,13 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo
 @JsonTypeInfo(
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     use = JsonTypeInfo.Id.NAME,
-    property = "type"
+    property = "type",
 )
 @JsonSubTypes(
     JsonSubTypes.Type(value = ImageFile::class, name = "ImageFile"),
     JsonSubTypes.Type(value = VideoFile::class, name = "VideoFile"),
     JsonSubTypes.Type(value = AudioFile::class, name = "AudioFile"),
-    JsonSubTypes.Type(value = SubtitleFile::class, name = "SubtitleFile")
+    JsonSubTypes.Type(value = SubtitleFile::class, name = "SubtitleFile"),
 )
 interface MediaFile {
     val type: String

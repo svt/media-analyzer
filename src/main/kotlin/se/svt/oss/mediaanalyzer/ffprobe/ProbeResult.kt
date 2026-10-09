@@ -11,7 +11,7 @@ data class ProbeResult(
     val format: Format?,
     val streams: List<Stream> = emptyList(),
     val frames: List<Frame> = emptyList(),
-    val error: FfError?
+    val error: FfError?,
 ) {
     inline fun <reified T : Stream> streamsOfType() = streams.filterIsInstance<T>()
 

@@ -14,7 +14,6 @@ data class UnknownStream(
     override val codec_long_name: String?,
     override val profile: String?,
     override val codec_type: String?,
-    override val codec_time_base: FractionString?,
     override val codec_tag: String,
     override val codec_tag_string: String,
     override val r_frame_rate: FractionString,
@@ -27,5 +26,5 @@ data class UnknownStream(
     override val bit_rate: Long?,
     override val max_bitrate: Long?,
     override val bits_per_raw_sample: Int?,
-    override val nb_frames: Int?
+    override val nb_frames: Int?,
 ) : Stream

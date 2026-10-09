@@ -55,33 +55,37 @@ data class VideoTrack(
     val hdrFormatCompatibility: String?,
     @JsonProperty("colour_description_present")
     val colourDescriptionPresent: String?,
-    @JsonProperty("colour_description_present_Source")
-    val colourDescriptionPresentSource: String?,
     @JsonProperty("colour_range")
     val colourRange: String?,
-    @JsonProperty("colour_range_Source")
-    val colourRangeSource: String?,
     @JsonProperty("colour_primaries")
     val colourPrimaries: String?,
-    @JsonProperty("colour_primaries_Source")
-    val colourPrimariesSource: String?,
     @JsonProperty("transfer_characteristics")
     val transferCharacteristics: String?,
-    @JsonProperty("transfer_characteristics_Source")
-    val transferCharacteristicsSource: String?,
     @JsonProperty("matrix_coefficients")
     val matrixCoefficients: String?,
-    @JsonProperty("matrix_coefficients_Source")
-    val matrixCoefficientsSource: String?,
     @JsonProperty("MasteringDisplay_ColorPrimaries")
     val masteringDisplayColourPrimaries: String?,
-    @JsonProperty("MasteringDisplay_ColorPrimaries_Source")
-    val masteringDisplayColourPrimariesSource: String?,
-    @JsonProperty("MasteringDisplay_Luminance")
-    val masteringDisplayLuminance: String?,
-    @JsonProperty("MasteringDisplay_Luminance_Source")
-    val masteringDisplayLuminanceSource: String?
+    @JsonProperty("MasteringDisplay_Luminance_Min")
+    private val masteringDisplayLuminanceMin: String?,
+    @JsonProperty("MasteringDisplay_Luminance_Max")
+    private val masteringDisplayLuminanceMax: String?,
+    @JsonProperty("MaxCLL")
+    private val maxContentLightLevel: String?,
+    @JsonProperty("MaxFALL")
+    private val maxFrameAverageLightLevel: String?,
 ) : Track {
     val isInterlaced: Boolean?
         get() = scanType?.let { it != "Progressive" }
+
+    val masteringPeakNits: Int?
+        get() = masteringDisplayLuminanceMax?.toIntOrNull()
+
+    val masteringMinNits: Double?
+        get() = masteringDisplayLuminanceMin?.toDoubleOrNull()
+
+    val maxCllNits: Int?
+        get() = maxContentLightLevel?.toIntOrNull()
+
+    val maxFallNits: Int?
+        get() = maxFrameAverageLightLevel?.toIntOrNull()
 }

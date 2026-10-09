@@ -13,7 +13,7 @@ private val log = KotlinLogging.logger { }
 class FfprobeAnalyzer
 @JvmOverloads constructor(
     private val objectMapper: ObjectMapper = ObjectMapper().findAndRegisterModules(),
-    private val filterValidParams: Boolean = true
+    private val filterValidParams: Boolean = true,
 ) {
 
     private val validParams: Set<String> by lazy {
@@ -61,7 +61,7 @@ class FfprobeAnalyzer
         }
         val (exitCode, probeResult) = ProcessUtil.runAndParse<ProbeResult>(
             objectMapper,
-            *command.toTypedArray()
+            *command.toTypedArray(),
         )
         if (exitCode != 0 || probeResult.error != null) {
             val message = probeResult.error?.string ?: "exitcode: $exitCode"
@@ -93,7 +93,7 @@ class FfprobeAnalyzer
         }
         val (exitCode, probeResult) = ProcessUtil.runAndParse<ProbeResult>(
             objectMapper,
-            *command.toTypedArray()
+            *command.toTypedArray(),
         )
         if (exitCode != 0 || probeResult.error != null) {
             val message = probeResult.error?.string ?: "exitcode: $exitCode"

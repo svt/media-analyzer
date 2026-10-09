@@ -14,7 +14,6 @@ data class FfAudioStream(
     override val codec_long_name: String?,
     override val profile: String?,
     override val codec_type: String?,
-    override val codec_time_base: FractionString?,
     override val codec_tag: String,
     override val codec_tag_string: String,
     override val r_frame_rate: FractionString,
@@ -32,5 +31,5 @@ data class FfAudioStream(
     val sample_rate: Int?,
     val channels: Int,
     val channel_layout: String?,
-    val bits_per_sample: Int?
+    val bits_per_sample: Int?,
 ) : Stream
