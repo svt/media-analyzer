@@ -24,6 +24,19 @@ scmVersion {
 
 group = "se.svt.oss"
 project.version = scmVersion.version
+
+// axion-release 1.21.4 pulls in JGit 7.x, which removed GpgObjectSigner
+// (replaced by the Signer API); jreleaser still compiles against it and
+// dies with NoClassDefFoundError when Gradle 9's plugin classpath
+// resolution lets axion's JGit win. Force a version both plugins work
+// with. Revisit when jreleaser supports JGit 7.
+buildscript {
+    configurations.classpath {
+        resolutionStrategy {
+            force("org.eclipse.jgit:org.eclipse.jgit:6.10.0.202406032230-r")
+        }
+    }
+}
 project.description = "A media analyzer lib that utilizes ffprobe and mediainfo"
 
 apply {
