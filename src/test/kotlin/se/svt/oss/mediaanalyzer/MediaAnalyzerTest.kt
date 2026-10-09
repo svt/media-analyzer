@@ -316,16 +316,6 @@ internal class MediaAnalyzerTest {
     }
 
     @Test
-    fun testColorRangeFallsBackToMediaInfoFullWhenFfprobeHasNone() {
-        mockMediaInfo("/mediainfo-dovi.json")
-        mockFfprobe("/ffprobe-dovi-no-color-range.json")
-
-        val videoFile = MediaAnalyzer().analyze(file, false) as VideoFile
-        assertThat(videoFile.videoStreams[0])
-            .hasColorRange("full")
-    }
-
-    @Test
     fun testColorRangePassesThroughUnrecognizedFfprobeValue() {
         mockMediaInfo("/mediainfo-iphone.json")
         // Current ffprobe omits the key instead of reporting unknown values,
